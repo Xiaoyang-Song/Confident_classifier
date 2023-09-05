@@ -24,7 +24,7 @@ parser.add_argument('--epochs', type=int, default=100, help='number of epochs to
 parser.add_argument('--lr', type=float, default=0.0002, help='learning rate')
 parser.add_argument('--no-cuda', action='store_true', default=False, help='disables CUDA training')
 parser.add_argument('--seed', type=int, default=1, help='random seed')
-parser.add_argument('--log-interval', type=int, default=100, help='how many batches to wait before logging training status')
+parser.add_argument('--log-interval', type=int, default=1, help='how many batches to wait before logging training status')
 parser.add_argument('--dataset', default='svhn', help='cifar10 | svhn')
 parser.add_argument('--dataroot', required=True, help='path to dataset')
 parser.add_argument('--imageSize', type=int, default=32, help='the height / width of the input image to network')
@@ -143,7 +143,7 @@ def train(epoch):
         D_G_z2 = output.data.mean()
 
         # minimize the true distribution
-        KL_fake_output = F.log_softmax(model(fake))
+        KL_fake_output = F.log_softmax(model(fake), dim=-1)
         errG_KL = F.kl_div(KL_fake_output, uniform_dist)*args.num_classes
         generator_loss = errG + args.beta*errG_KL
         generator_loss.backward()
@@ -163,7 +163,7 @@ def train(epoch):
             noise = noise.cuda()
         noise = Variable(noise)
         fake = netG(noise)
-        KL_fake_output = F.log_softmax(model(fake))
+        KL_fake_output = F.log_softmax(model(fake), dim=-1)
         KL_loss_fake = F.kl_div(KL_fake_output, uniform_dist)*args.num_classes
         total_loss = loss + args.beta*KL_loss_fake
         total_loss.backward()
@@ -181,21 +181,22 @@ def test(epoch):
     test_loss = 0
     correct = 0
     total = 0
-    for data, target in test_loader:
-        total += data.size(0)
-        if args.cuda:
-            data, target = data.cuda(), target.cuda()
-        data, target = Variable(data, volatile=True), Variable(target)
-        output = F.log_softmax(model(data))
-        test_loss += F.nll_loss(output, target).data.item()
-        pred = output.data.max(1)[1] # get the index of the max log-probability
-        correct += pred.eq(target.data).cpu().sum()
+    with torch.no_grad():
+        for data, target in test_loader:
+            total += data.size(0)
+            if args.cuda:
+                data, target = data.cuda(), target.cuda()
+            data, target = Variable(data), Variable(target)
+            output = F.log_softmax(model(data), dim=-1)
+            test_loss += F.nll_loss(output, target).data.item()
+            pred = output.data.max(1)[1] # get the index of the max log-probability
+            correct += pred.eq(target.data).cpu().sum()
 
-    test_loss = test_loss
-    test_loss /= len(test_loader) # loss function already averages over batch size
-    print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
-        test_loss, correct, total,
-        100. * correct / total))
+        test_loss = test_loss
+        test_loss /= len(test_loader) # loss function already averages over batch size
+        print('\nTest set: Average loss: {:.4f}, Accuracy: {}/{} ({:.0f}%)\n'.format(
+            test_loss, correct, total,
+            100. * correct / total))
 
 
 for epoch in range(1, args.epochs + 1):
