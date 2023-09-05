@@ -29,6 +29,7 @@ parser.add_argument('--dataset', default='svhn', help='cifar10 | svhn')
 parser.add_argument('--dataroot', required=True, help='path to dataset')
 parser.add_argument('--imageSize', type=int, default=32, help='the height / width of the input image to network')
 parser.add_argument('--outf', default='.', help='folder to output images and model checkpoints')
+
 parser.add_argument('--wd', type=float, default=0.0, help='weight decay')
 parser.add_argument('--droprate', type=float, default=0.1, help='learning rate decay')
 parser.add_argument('--decreasing_lr', default='60', help='decreasing strategy')
@@ -52,10 +53,15 @@ if args.cuda:
 kwargs = {'num_workers': 1, 'pin_memory': True} if args.cuda else {}
 
 print('load data: ',args.dataset)
-train_loader, test_loader = data_loader.getTargetDataSet(args.dataset, args.batch_size, args.imageSize, args.dataroot)
+# train_loader, test_loader = data_loader.getTargetDataSet(args.dataset, args.batch_size, args.imageSize, args.dataroot)
+if args.dataset == 'cifar10':
+    _, _, train_loader, test_loader = data_loader.CIFAR10(args.batch_size, args.batch_size)
+elif args.dataset == 'svhn':
+    _, _, train_loader, test_loader = data_loader.SVHN(args.batch_size, args.batch_size, True)
 
 print('Load model')
 model = models.vgg13()
+# model = models.densenet100()
 print(model)
 
 print('load GAN')
@@ -103,6 +109,9 @@ def train(epoch):
         targetv = Variable(gan_target)
         optimizerD.zero_grad()
         output = netD(data)
+        # print(output.shape)
+        # print(targetv.shape)
+        targetv = targetv.unsqueeze(-1)
         errD_real = criterion(output, targetv)
         errD_real.backward()
         D_x = output.data.mean()
