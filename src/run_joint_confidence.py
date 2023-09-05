@@ -123,6 +123,7 @@ def train(epoch):
         noise = Variable(noise)
         fake = netG(noise)
         targetv = Variable(gan_target.fill_(fake_label))
+        targetv = targetv.unsqueeze(-1)
         output = netD(fake.detach())
         errD_fake = criterion(output, targetv)
         errD_fake.backward()
@@ -137,6 +138,7 @@ def train(epoch):
         # Original GAN loss
         targetv = Variable(gan_target.fill_(real_label))  
         output = netD(fake)
+        targetv = targetv.unsqueeze(-1)
         errG = criterion(output, targetv)
         D_G_z2 = output.data.mean()
 
