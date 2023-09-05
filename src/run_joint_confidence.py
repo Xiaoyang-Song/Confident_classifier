@@ -154,7 +154,7 @@ def train(epoch):
         ###########################
         # cross entropy loss
         optimizer.zero_grad()
-        output = F.log_softmax(model(data))
+        output = F.log_softmax(model(data), dim=-1)
         loss = F.nll_loss(output, target)
 
         # KL divergence
