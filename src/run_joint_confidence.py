@@ -61,8 +61,7 @@ elif args.dataset == 'svhn':
 
 print('Load model')
 # model = models.vgg13()
-model = models.densenet.DenseNet3(100, 10, 3)
-# model = models.densenet100()
+model = models.densenet.DenseNet3(depth=100, num_classes=10, input_channel=3)
 print(model)
 
 print('load GAN')
