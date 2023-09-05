@@ -91,7 +91,8 @@ decreasing_lr = list(map(int, args.decreasing_lr.split(',')))
 
 def train(epoch):
     model.train()
-    for batch_idx, (data, target) in enumerate(tqdm(train_loader)):
+    # for batch_idx, (data, target) in enumerate(tqdm(train_loader)):
+    for batch_idx, (data, target) in enumerate(train_loader):
 
         gan_target = torch.FloatTensor(target.size()).fill_(0)
         uniform_dist = torch.Tensor(data.size(0), args.num_classes).fill_((1./args.num_classes))
@@ -200,7 +201,7 @@ def test(epoch):
             100. * correct / total))
 
 
-for epoch in range(1, args.epochs + 1):
+for epoch in tqdm(range(1, args.epochs + 1)):
     train(epoch)
     test(epoch)
     if epoch in decreasing_lr:
