@@ -12,6 +12,7 @@ import data_loader
 import numpy as np
 import torchvision.utils as vutils
 import models
+from tqdm import tqdm
 
 from torchvision import datasets, transforms
 from torch.autograd import Variable
@@ -90,7 +91,7 @@ decreasing_lr = list(map(int, args.decreasing_lr.split(',')))
 
 def train(epoch):
     model.train()
-    for batch_idx, (data, target) in enumerate(train_loader):
+    for batch_idx, (data, target) in enumerate(tqdm(train_loader)):
 
         gan_target = torch.FloatTensor(target.size()).fill_(0)
         uniform_dist = torch.Tensor(data.size(0), args.num_classes).fill_((1./args.num_classes))
