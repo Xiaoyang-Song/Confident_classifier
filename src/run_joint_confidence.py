@@ -24,7 +24,7 @@ parser.add_argument('--epochs', type=int, default=100, help='number of epochs to
 parser.add_argument('--lr', type=float, default=0.0002, help='learning rate')
 parser.add_argument('--no-cuda', action='store_true', default=False, help='disables CUDA training')
 parser.add_argument('--seed', type=int, default=1, help='random seed')
-parser.add_argument('--log-interval', type=int, default=1, help='how many batches to wait before logging training status')
+parser.add_argument('--log-interval', type=int, default=100, help='how many batches to wait before logging training status')
 parser.add_argument('--dataset', default='svhn', help='cifar10 | svhn')
 parser.add_argument('--dataroot', required=True, help='path to dataset')
 parser.add_argument('--imageSize', type=int, default=32, help='the height / width of the input image to network')
@@ -60,7 +60,8 @@ elif args.dataset == 'svhn':
     _, _, train_loader, test_loader = data_loader.SVHN(args.batch_size, args.batch_size, True)
 
 print('Load model')
-model = models.vgg13()
+# model = models.vgg13()
+model = models.densenet.DenseNet3(100, 10, 3)
 # model = models.densenet100()
 print(model)
 
