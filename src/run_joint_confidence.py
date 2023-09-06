@@ -9,6 +9,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 import data_loader
+from data_loader import DSET
 import numpy as np
 import torchvision.utils as vutils
 import models
