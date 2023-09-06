@@ -26,7 +26,7 @@ parser.add_argument('--lr', type=float, default=0.001, help='learning rate')
 parser.add_argument('--no-cuda', action='store_true', default=False, help='disables CUDA training')
 parser.add_argument('--seed', type=int, default=1, help='random seed')
 parser.add_argument('--log-interval', type=int, default=100, help='how many batches to wait before logging training status')
-parser.add_argument('--dataset', default='svhn', help='cifar10 | svhn')
+parser.add_argument('--dataset', default='CIFAR10-SVHN', help='cifar10 | svhn')
 parser.add_argument('--dataroot', required=True, help='path to dataset')
 parser.add_argument('--imageSize', type=int, default=32, help='the height / width of the input image to network')
 parser.add_argument('--outf', default='.', help='folder to output images and model checkpoints')
@@ -36,12 +36,13 @@ parser.add_argument('--droprate', type=float, default=0.1, help='learning rate d
 parser.add_argument('--decreasing_lr', default='60', help='decreasing strategy')
 parser.add_argument('--num_classes', type=int, default=10, help='the # of classes')
 parser.add_argument('--beta', type=float, default=1, help='penalty parameter for KL term')
+parser.add_argument('--num_channels', type=float, default=3, help='# of channels')
 
 args = parser.parse_args()
 
-if args.dataset == 'cifar10':
+if args.dataset == 'CIFAR10-SVHN':
     args.beta = 0.1
-    args.batch_size = 256
+    args.batch_size = 128
     
 print(args)
 args.cuda = not args.no_cuda and torch.cuda.is_available()
@@ -53,22 +54,30 @@ if args.cuda:
 
 kwargs = {'num_workers': 1, 'pin_memory': True} if args.cuda else {}
 
-print('load data: ',args.dataset)
+print('load InD data for Experiment: ',args.dataset)
 # train_loader, test_loader = data_loader.getTargetDataSet(args.dataset, args.batch_size, args.imageSize, args.dataroot)
-if args.dataset == 'cifar10':
-    _, _, train_loader, test_loader = data_loader.CIFAR10(args.batch_size, args.batch_size)
-elif args.dataset == 'svhn':
-    _, _, train_loader, test_loader = data_loader.SVHN(args.batch_size, args.batch_size, True)
+if args.dataset == 'CIFAR10-SVHN' or args.dataset == 'MNIST-FashionMNIST':
+    dset = DSET(args.dataset, False, args.batch_size, args.batch_size, None, None)
+    train_loader, test_loader = dset.ind_train_loader, dset.ind_val_loader
+elif args.dataset == 'SVHN' or args.dataset == 'FashionMNIST':
+    dset = DSET(args.dataset, True, args.batch_size, args.batch_size, [0, 1, 2, 3, 4, 5, 6, 7], [8, 9])
+    train_loader, test_loader = dset.ind_train_loader, dset.ind_val_loader
+elif args.dataset == 'MNIST':
+    dset = DSET(args.dataset, True, args.batch_size, args.batch_size, [2, 3, 6, 8, 9], [1, 7])
+    train_loader, test_loader = dset.ind_train_loader, dset.ind_val_loader
+else:
+    assert False
+    
 
 print('Load model')
 # model = models.vgg13()
-model = models.densenet.DenseNet3(depth=100, num_classes=10, input_channel=3)
+model = models.densenet.DenseNet3(depth=100, num_classes=args.num_classes, input_channel=args.num_channels)
 print(model)
 
 print('load GAN')
 nz = 100
-netG = models.Generator(1, nz, 64, 3) # ngpu, nz, ngf, nc
-netD = models.Discriminator(1, 3, 64) # ngpu, nc, ndf
+netG = models.Generator(1, nz, 64, args.num_channels) # ngpu, nz, ngf, nc
+netD = models.Discriminator(1, args.num_channels, 64) # ngpu, nc, ndf
 # Initial setup for GAN
 real_label = 1
 fake_label = 0
