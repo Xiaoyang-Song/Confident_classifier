@@ -5,7 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import os
 
-# from models import *
+from models import *
 
 
 def weights_init(m):
