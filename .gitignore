@@ -2,7 +2,7 @@
 appengine-generated/
 *.pyc
 data/*
-# results/*
+results/*
 test/*
 
 Datasets
