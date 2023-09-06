@@ -5,7 +5,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import os
 
-from models import *
+# from models import *
 
 
 def weights_init(m):
@@ -33,7 +33,7 @@ class _netD(nn.Module):
             nn.BatchNorm2d(ndf * 8),
             nn.LeakyReLU(0.2, inplace=True),
             # state size. (ndf*8) x 4 x 4
-            nn.Conv2d(ndf * 8, 1, 4, 1, 0, bias=False),
+            nn.Conv2d(ndf * 8, 1, 4 if nc == 3 else 3, 1, 0, bias=False) ,
             nn.Sigmoid()
         )
 
@@ -59,11 +59,11 @@ class _netG(nn.Module):
             nn.BatchNorm2d(ngf * 4),
             nn.ReLU(True),
             # state size. (ngf*4) x 8 x 8
-            nn.ConvTranspose2d(ngf * 4, ngf * 2, 4, 2, 1, bias=False),
+            nn.ConvTranspose2d(ngf * 4, ngf * 2, 4 if nc == 3 else 3, 2, 1, bias=False),
             nn.BatchNorm2d(ngf * 2),
             nn.ReLU(True),
             # state size. (ngf*2) x 16 x 16
-            nn.ConvTranspose2d(ngf * 2, nc, 4, 2, 1, bias=False),
+            nn.ConvTranspose2d(ngf * 2, nc, 4 if nc == 3 else 2, 2, 1, bias=False),
             nn.Sigmoid()
             # state size. (nc) x 32 x 32
         )
@@ -84,4 +84,16 @@ def Discriminator(n_gpu, nc, ndf):
     model = _netD(n_gpu, nc, ndf)
     model.apply(weights_init)
     return model
+
+if __name__ == '__main__':
+    D = Discriminator(1, 3, 64)
+    # x = torch.ones((3, 1, 28, 28))
+    x = torch.ones((3, 3, 32, 32))
+    print(x.shape)
+    print(D(x).shape)
+
+    G = Generator(1, 100, 64, 3)
+    z = torch.ones((5, 100, 1, 1))
+    print(z.shape)
+    print(G(z).shape)
 
