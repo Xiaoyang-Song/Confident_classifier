@@ -37,7 +37,7 @@ parser.add_argument('--droprate', type=float, default=0.1, help='learning rate d
 parser.add_argument('--decreasing_lr', default='60', help='decreasing strategy')
 parser.add_argument('--num_classes', type=int, default=10, help='the # of classes')
 parser.add_argument('--beta', type=float, default=1, help='penalty parameter for KL term')
-parser.add_argument('--num_channels', type=float, default=3, help='# of channels')
+parser.add_argument('--num_channels', type=int, default=3, help='# of channels')
 
 args = parser.parse_args()
 
