@@ -41,7 +41,7 @@ args = parser.parse_args()
 
 if args.dataset == 'cifar10':
     args.beta = 0.1
-    args.batch_size = 64
+    args.batch_size = 256
     
 print(args)
 args.cuda = not args.no_cuda and torch.cuda.is_available()
