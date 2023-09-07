@@ -53,9 +53,9 @@ parser.add_argument('--num_channels', type=int,
 
 args = parser.parse_args()
 
-if args.dataset == 'CIFAR10-SVHN':
-    args.beta = 0.1
-    args.batch_size = 64
+# if args.dataset == 'CIFAR10-SVHN':
+#     args.beta = 0.1
+#     args.batch_size = 64
 
 print(args)
 args.cuda = not args.no_cuda and torch.cuda.is_available()
