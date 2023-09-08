@@ -15,9 +15,9 @@ export PYTHONPATH=$PYTHONPATH$:`pwd`
 # sbatch jobs/svhn/j3.sh
 
 # CIFAR10-SVHN
-# sbatch jobs/cifar10-svhn/j0.sh
-# sbatch jobs/cifar10-svhn/j1.sh
+sbatch jobs/cifar10-svhn/j0.sh
+sbatch jobs/cifar10-svhn/j1.sh
 sbatch jobs/cifar10-svhn/j2.sh
-# sbatch jobs/cifar10-svhn/j3.sh
+sbatch jobs/cifar10-svhn/j3.sh
 
 squeue -u xysong

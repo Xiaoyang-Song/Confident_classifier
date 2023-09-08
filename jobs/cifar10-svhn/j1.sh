@@ -11,7 +11,7 @@
 #SBATCH --time=24:00:00
 #SBATCH --output=/scratch/sunwbgt_root/sunwbgt98/xysong/jobs/BASE-CS1.log
 
-export save=./results/joint_confidence_loss/CS-0.01-${RANDOM}/
+export save=./results/joint_confidence_loss/CS-0.01/
 mkdir -p $save
 # SVHN
 python ./src/run_joint_confidence.py --dataset CIFAR10-SVHN --num_classes 10 --batch-size 64 --beta 0.01 --outf $save --dataroot ./data   2>&1 | tee  $save/log.txt

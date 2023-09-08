@@ -86,8 +86,9 @@ else:
 
 
 print('Load model')
-model = models.vgg13()
-# model = models.densenet.DenseNet3(depth=100, num_classes=args.num_classes, input_channel=args.num_channels)
+# model = models.vgg13()
+model = models.densenet.DenseNet3(
+    depth=100, num_classes=args.num_classes, input_channel=args.num_channels)
 print(model)
 
 print('load GAN')

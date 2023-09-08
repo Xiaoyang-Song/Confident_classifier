@@ -55,9 +55,9 @@ if args.cuda:
 kwargs = {'num_workers': 1, 'pin_memory': True} if args.cuda else {}
 
 print('Load model')
-model = models.vgg13()
-# model = models.densenet.DenseNet3(
-# depth = 100, num_classes = args.num_classes, input_channel = args.num_channels)
+# model = models.vgg13()
+model = models.densenet.DenseNet3(
+    depth=100, num_classes=args.num_classes, input_channel=args.num_channels)
 model.load_state_dict(torch.load(args.pre_trained_net))
 print(model)
 
