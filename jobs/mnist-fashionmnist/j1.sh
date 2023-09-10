@@ -8,7 +8,7 @@
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:1
 #SBATCH --mem-per-gpu=12GB
-#SBATCH --time=3:00:00
+#SBATCH --time=6:00:00
 #SBATCH --output=/scratch/sunwbgt_root/sunwbgt98/xysong/jobs/CC-MFM-0.001.log
 
 export save=./results/joint_confidence_loss/MFM-0.001/
