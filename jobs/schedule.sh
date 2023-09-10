@@ -20,7 +20,7 @@ export PYTHONPATH=$PYTHONPATH$:`pwd`
 # sbatch jobs/cifar10-svhn/j2.sh
 # sbatch jobs/cifar10-svhn/j3.sh
 # sbatch jobs/cifar10-svhn/j4.sh
-sbatch jobs/cifar10-svhn/j5.sh
+# sbatch jobs/cifar10-svhn/j5.sh
 
 # FashionMNIST
 # sbatch jobs/fashionmnist/j0.sh
@@ -34,6 +34,6 @@ sbatch jobs/mnist/j0.sh
 sbatch jobs/mnist/j1.sh
 sbatch jobs/mnist/j2.sh
 sbatch jobs/mnist/j3.sh
-sbatch jobs/mnist/j4.sh
+# sbatch jobs/mnist/j4.sh
 
 squeue -u xysong

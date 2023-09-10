@@ -14,5 +14,5 @@
 export save=./results/joint_confidence_loss/M-0.001/
 mkdir -p $save
 # SVHN
-python ./src/run_joint_confidence.py --dataset MNIST --num_classes 10 --batch-size 64 --beta 0.001 --outf $save --dataroot ./data   2>&1 | tee  $save/log.txt
+python ./src/run_joint_confidence.py --dataset MNIST --num_channels 1 --num_classes 5 --batch-size 64 --beta 0.001 --outf $save --dataroot ./data   2>&1 | tee  $save/log.txt
 python ./src/test_detection.py --outf $save --dataset MNIST --out_dataset MNIST --pre_trained_net results/joint_confidence_loss/M-0.001/model_epoch_100.pth  --num_classes 5 --num_channels 1 --dataroot ./data   2>&1 | tee  $save/log.txt
