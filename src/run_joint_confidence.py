@@ -260,7 +260,7 @@ for epoch in tqdm(range(1, args.epochs + 1)):
     if epoch in decreasing_lr:
         optimizerG.param_groups[0]['lr'] *= args.droprate
         optimizerD.param_groups[0]['lr'] *= args.droprate
-        optimizer.param_groups[0]['lr'] *= args.droprate
+        # optimizer.param_groups[0]['lr'] *= args.droprate
     if epoch % 20 == 0:
         # do checkpointing
         torch.save(netG.state_dict(), '%s/netG_epoch_%d.pth' %

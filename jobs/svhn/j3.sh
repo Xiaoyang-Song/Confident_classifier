@@ -15,4 +15,4 @@ export save=./results/joint_confidence_loss/SV-0.1/
 mkdir -p $save
 # SVHN
 python ./src/run_joint_confidence.py --dataset SVHN --num_classes 8 --batch-size 64 --beta 0.1 --outf $save --dataroot ./data   2>&1 | tee  $save/log.txt
-python ./src/test_detection.py --outf $save --dataset SVHN --out_dataset SVHN --pre_trained_net results/joint_confidence_loss/FM-0.1/model_epoch_100.pth  --num_classes 8 --num_channels 3 --dataroot ./data   2>&1 | tee  $save/log.txt
+python ./src/test_detection.py --outf $save --dataset SVHN --out_dataset SVHN --pre_trained_net results/joint_confidence_loss/SV-0.1/model_epoch_100.pth  --num_classes 8 --num_channels 3 --dataroot ./data   2>&1 | tee  $save/log.txt
