@@ -14,5 +14,5 @@
 export save=./results/joint_confidence_loss/FM-0.0001/
 mkdir -p $save
 # SVHN
-python ./src/run_joint_confidence.py --dataset FashionMNIST --num_classes 8 --batch-size 64 --beta 0.0001 --outf $save --dataroot ./data   2>&1 | tee  $save/log.txt
+python ./src/run_joint_confidence.py --dataset FashionMNIST --num_classes 8 --num_channels 1 --batch-size 64 --beta 0.0001 --outf $save --dataroot ./data   2>&1 | tee  $save/log.txt
 python ./src/test_detection.py --outf $save --dataset FashionMNIST --out_dataset FashionMNIST --pre_trained_net results/joint_confidence_loss/FM-0.0001/model_epoch_100.pth  --num_classes 8 --num_channels 1 --dataroot ./data   2>&1 | tee  $save/log.txt
