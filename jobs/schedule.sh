@@ -30,10 +30,16 @@ export PYTHONPATH=$PYTHONPATH$:`pwd`
 
 
 # MNIST
-sbatch jobs/mnist/j0.sh
-sbatch jobs/mnist/j1.sh
-sbatch jobs/mnist/j2.sh
-sbatch jobs/mnist/j3.sh
+# sbatch jobs/mnist/j0.sh
+# sbatch jobs/mnist/j1.sh
+# sbatch jobs/mnist/j2.sh
+# sbatch jobs/mnist/j3.sh
 # sbatch jobs/mnist/j4.sh
+
+# MNIST-FashionMNIST
+sbatch jobs/mnist-fashionmnist/j0.sh
+sbatch jobs/mnist-fashionmnist/j1.sh
+sbatch jobs/mnist-fashionmnist/j2.sh
+sbatch jobs/mnist-fashionmnist/j3.sh
 
 squeue -u xysong
