@@ -110,7 +110,26 @@ if args.cuda:
 fixed_noise = Variable(fixed_noise)
 
 print('Setup optimizer')
-optimizer = optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.wd)
+# optimizer = optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.wd)
+optimizer = torch.optim.SGD(model.parameters(), lr=0.1,
+                            momentum=0.9, weight_decay=1e-4)
+
+
+def adjust_opt(optAlg, optimizer, epoch, max_epoch):
+    if optAlg == 'sgd':
+        if epoch < max_epoch * 0.5:
+            lr = 1e-1
+        elif epoch == max_epoch * 0.5:
+            lr = 1e-2
+        elif epoch == max_epoch * 0.75:
+            lr = 1e-3
+        else:
+            return
+
+        for param_group in optimizer.param_groups:
+            param_group['lr'] = lr
+
+
 optimizerD = optim.Adam(netD.parameters(), lr=args.lr, betas=(0.5, 0.999))
 optimizerG = optim.Adam(netG.parameters(), lr=args.lr, betas=(0.5, 0.999))
 decreasing_lr = list(map(int, args.decreasing_lr.split(',')))
@@ -235,6 +254,7 @@ def test(epoch):
 
 
 for epoch in tqdm(range(1, args.epochs + 1)):
+    adjust_opt('sgd', optimizer, epoch, args.epochs)
     train(epoch)
     test(epoch)
     if epoch in decreasing_lr:
