@@ -8,7 +8,7 @@
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:1
 #SBATCH --mem-per-gpu=12GB
-#SBATCH --time=12:00:00
+#SBATCH --time=24:00:00
 #SBATCH --output=/scratch/sunwbgt_root/sunwbgt98/xysong/jobs/CC-CS-2.log
 
 export save=./results/joint_confidence_loss/CS-2/
