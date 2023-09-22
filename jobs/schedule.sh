@@ -17,14 +17,14 @@ export PYTHONPATH=$PYTHONPATH$:`pwd`
 # sbatch jobs/svhn/j5.sh
 
 # CIFAR10-SVHN
-# sbatch jobs/cifar10-svhn/j0.sh
-# sbatch jobs/cifar10-svhn/j1.sh
+sbatch jobs/cifar10-svhn/j0.sh
+sbatch jobs/cifar10-svhn/j1.sh
 sbatch jobs/cifar10-svhn/j2.sh
 sbatch jobs/cifar10-svhn/j3.sh
-# sbatch jobs/cifar10-svhn/j4.sh
-# sbatch jobs/cifar10-svhn/j5.sh
+sbatch jobs/cifar10-svhn/j4.sh
+sbatch jobs/cifar10-svhn/j5.sh
 sbatch jobs/cifar10-svhn/j6.sh
-# sbatch jobs/cifar10-svhn/j7.sh
+sbatch jobs/cifar10-svhn/j7.sh
 
 # FashionMNIST
 # sbatch jobs/fashionmnist/j0.sh
