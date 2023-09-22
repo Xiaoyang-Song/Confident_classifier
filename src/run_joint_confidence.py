@@ -110,9 +110,9 @@ if args.cuda:
 fixed_noise = Variable(fixed_noise)
 
 print('Setup optimizer')
-# optimizer = optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.wd)
-optimizer = torch.optim.SGD(model.parameters(), lr=0.1,
-                            momentum=0.9, weight_decay=1e-4)
+optimizer = optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.wd)
+# optimizer = torch.optim.SGD(model.parameters(), lr=0.1,
+#                             momentum=0.9, weight_decay=1e-4)
 
 
 def adjust_opt(optAlg, optimizer, epoch, max_epoch):
@@ -254,13 +254,14 @@ def test(epoch):
 
 
 for epoch in tqdm(range(1, args.epochs + 1)):
-    adjust_opt('sgd', optimizer, epoch, args.epochs)
+    # adjust_opt('sgd', optimizer, epoch, args.epochs)
     train(epoch)
     test(epoch)
     if epoch in decreasing_lr:
         optimizerG.param_groups[0]['lr'] *= args.droprate
         optimizerD.param_groups[0]['lr'] *= args.droprate
-        # optimizer.param_groups[0]['lr'] *= args.droprate
+        optimizer.param_groups[0]['lr'] *= args.droprate
+        
     if epoch % 20 == 0:
         # do checkpointing
         torch.save(netG.state_dict(), '%s/netG_epoch_%d.pth' %
