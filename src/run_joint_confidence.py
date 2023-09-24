@@ -26,7 +26,7 @@ parser.add_argument('--batch-size', type=int, default=64,
                     help='input batch size for training')
 parser.add_argument('--epochs', type=int, default=300,
                     help='number of epochs to train')
-parser.add_argument('--lr', type=float, default=0.001, help='learning rate')
+parser.add_argument('--lr', type=float, default=0.0005, help='learning rate')
 parser.add_argument('--no-cuda', action='store_true',
                     default=False, help='disables CUDA training')
 parser.add_argument('--seed', type=int, default=1, help='random seed')
@@ -111,9 +111,9 @@ fixed_noise = Variable(fixed_noise)
 
 print('Setup optimizer')
 print(args.lr)
-# optimizer = optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.wd)
-optimizer = torch.optim.SGD(model.parameters(), lr=0.1,
-                            momentum=0.9, weight_decay=1e-4)
+optimizer = optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.wd)
+# optimizer = torch.optim.SGD(model.parameters(), lr=0.1,
+#                             momentum=0.9, weight_decay=1e-4)
 
 
 def adjust_opt(optAlg, optimizer, epoch, max_epoch):
@@ -255,13 +255,13 @@ def test(epoch):
 
 
 for epoch in tqdm(range(1, args.epochs + 1)):
-    adjust_opt('sgd', optimizer, epoch, args.epochs)
+    # adjust_opt('sgd', optimizer, epoch, args.epochs)
     train(epoch)
     test(epoch)
     if epoch in decreasing_lr:
         optimizerG.param_groups[0]['lr'] *= args.droprate
         optimizerD.param_groups[0]['lr'] *= args.droprate
-        # optimizer.param_groups[0]['lr'] *= args.droprate
+        optimizer.param_groups[0]['lr'] *= args.droprate
 
     if epoch % 20 == 0:
         # do checkpointing
