@@ -24,7 +24,7 @@ parser = argparse.ArgumentParser(
     description='Training code - joint confidence')
 parser.add_argument('--batch-size', type=int, default=64,
                     help='input batch size for training')
-parser.add_argument('--epochs', type=int, default=300,
+parser.add_argument('--epochs', type=int, default=100,
                     help='number of epochs to train')
 parser.add_argument('--lr', type=float, default=0.0005, help='learning rate')
 parser.add_argument('--no-cuda', action='store_true',
