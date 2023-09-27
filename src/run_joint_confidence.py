@@ -24,7 +24,7 @@ parser = argparse.ArgumentParser(
     description='Training code - joint confidence')
 parser.add_argument('--batch-size', type=int, default=64,
                     help='input batch size for training')
-parser.add_argument('--epochs', type=int, default=300,
+parser.add_argument('--epochs', type=int, default=100,
                     help='number of epochs to train')
 parser.add_argument('--lr', type=float, default=0.001, help='learning rate')
 parser.add_argument('--no-cuda', action='store_true',
@@ -53,9 +53,9 @@ parser.add_argument('--num_channels', type=int,
 
 args = parser.parse_args()
 
-# if args.dataset == 'CIFAR10-SVHN':
-#     args.beta = 0.1
-#     args.batch_size = 64
+if args.dataset == 'CIFAR10-SVHN':
+    args.beta = 0.1
+    args.batch_size = 64
 
 print(args)
 args.cuda = not args.no_cuda and torch.cuda.is_available()
@@ -86,9 +86,9 @@ else:
 
 
 print('Load model')
-# model = models.vgg13()
-model = models.densenet.DenseNet3(
-    depth=100, num_classes=args.num_classes, input_channel=args.num_channels)
+model = models.vgg13()
+# model = models.densenet.DenseNet3(
+#     depth=100, num_classes=args.num_classes, input_channel=args.num_channels)
 print(model)
 
 print('load GAN')
@@ -111,9 +111,9 @@ fixed_noise = Variable(fixed_noise)
 
 print('Setup optimizer')
 print(args.lr)
-# optimizer = optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.wd)
-optimizer = torch.optim.SGD(model.parameters(), lr=0.1,
-                            momentum=0.9, weight_decay=1e-4)
+optimizer = optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.wd)
+# optimizer = torch.optim.SGD(model.parameters(), lr=0.1,
+#                             momentum=0.9, weight_decay=1e-4)
 
 
 def adjust_opt(optAlg, optimizer, epoch, max_epoch):
@@ -255,13 +255,13 @@ def test(epoch):
 
 
 for epoch in tqdm(range(1, args.epochs + 1)):
-    adjust_opt('sgd', optimizer, epoch, args.epochs)
+    # adjust_opt('sgd', optimizer, epoch, args.epochs)
     train(epoch)
     test(epoch)
     if epoch in decreasing_lr:
         optimizerG.param_groups[0]['lr'] *= args.droprate
         optimizerD.param_groups[0]['lr'] *= args.droprate
-        # optimizer.param_groups[0]['lr'] *= args.droprate
+        optimizer.param_groups[0]['lr'] *= args.droprate
 
     if epoch % 20 == 0:
         # do checkpointing
