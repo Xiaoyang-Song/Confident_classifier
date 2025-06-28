@@ -79,16 +79,16 @@ elif args.dataset == 'SVHN' or args.dataset == 'FashionMNIST':
     train_loader, test_loader = dset.ind_train_loader, dset.ind_val_loader
 elif args.dataset == 'MNIST':
     dset = DSET(args.dataset, True, args.batch_size,
-                args.batch_size, [2, 3, 6, 8, 9], [1, 7])
+                args.batch_size, [0, 1, 2, 3, 4, 5, 6, 7], [8, 9])
     train_loader, test_loader = dset.ind_train_loader, dset.ind_val_loader
 else:
     assert False
 
 
 print('Load model')
-model = models.vgg13()
-# model = models.densenet.DenseNet3(
-#     depth=100, num_classes=args.num_classes, input_channel=args.num_channels)
+# model = models.vgg13()
+model = models.densenet.DenseNet3(
+    depth=100, num_classes=args.num_classes, input_channel=args.num_channels)
 print(model)
 
 print('load GAN')

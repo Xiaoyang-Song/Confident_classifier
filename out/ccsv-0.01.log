@@ -1,0 +1,2070 @@
+ic| len(dset): 73257
+ic| len(dset): 26032
+Namespace(batch_size=64, epochs=100, lr=0.001, no_cuda=False, seed=1, log_interval=100, dataset='SVHN', dataroot='./data', imageSize=32, outf='./results/joint_confidence_loss/SV-0.01/', wd=0.0, droprate=0.1, decreasing_lr='60', num_classes=8, beta=0.01, num_channels=3)
+Random Seed:  1
+load InD data for Experiment:  SVHN
+Using downloaded and verified file: ./Datasets/SVHN/train_32x32.mat
+Using downloaded and verified file: ./Datasets/SVHN/test_32x32.mat
+Load model
+DenseNet3(
+  (conv1): Conv2d(3, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (block1): DenseBlock(
+    (layer): Sequential(
+      (0): BottleneckBlock(
+        (bn1): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(24, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (1): BottleneckBlock(
+        (bn1): BatchNorm2d(36, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(36, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BottleneckBlock(
+        (bn1): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(48, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BottleneckBlock(
+        (bn1): BatchNorm2d(60, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(60, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (4): BottleneckBlock(
+        (bn1): BatchNorm2d(72, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(72, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (5): BottleneckBlock(
+        (bn1): BatchNorm2d(84, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(84, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (6): BottleneckBlock(
+        (bn1): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(96, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (7): BottleneckBlock(
+        (bn1): BatchNorm2d(108, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(108, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (8): BottleneckBlock(
+        (bn1): BatchNorm2d(120, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(120, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (9): BottleneckBlock(
+        (bn1): BatchNorm2d(132, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(132, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (10): BottleneckBlock(
+        (bn1): BatchNorm2d(144, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(144, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (11): BottleneckBlock(
+        (bn1): BatchNorm2d(156, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(156, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (12): BottleneckBlock(
+        (bn1): BatchNorm2d(168, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(168, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (13): BottleneckBlock(
+        (bn1): BatchNorm2d(180, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(180, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (14): BottleneckBlock(
+        (bn1): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(192, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (15): BottleneckBlock(
+        (bn1): BatchNorm2d(204, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(204, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (trans1): TransitionBlock(
+    (bn1): BatchNorm2d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (relu): ReLU(inplace=True)
+    (conv1): Conv2d(216, 108, kernel_size=(1, 1), stride=(1, 1), bias=False)
+  )
+  (block2): DenseBlock(
+    (layer): Sequential(
+      (0): BottleneckBlock(
+        (bn1): BatchNorm2d(108, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(108, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (1): BottleneckBlock(
+        (bn1): BatchNorm2d(120, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(120, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BottleneckBlock(
+        (bn1): BatchNorm2d(132, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(132, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BottleneckBlock(
+        (bn1): BatchNorm2d(144, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(144, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (4): BottleneckBlock(
+        (bn1): BatchNorm2d(156, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(156, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (5): BottleneckBlock(
+        (bn1): BatchNorm2d(168, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(168, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (6): BottleneckBlock(
+        (bn1): BatchNorm2d(180, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(180, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (7): BottleneckBlock(
+        (bn1): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(192, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (8): BottleneckBlock(
+        (bn1): BatchNorm2d(204, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(204, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (9): BottleneckBlock(
+        (bn1): BatchNorm2d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(216, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (10): BottleneckBlock(
+        (bn1): BatchNorm2d(228, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(228, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (11): BottleneckBlock(
+        (bn1): BatchNorm2d(240, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(240, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (12): BottleneckBlock(
+        (bn1): BatchNorm2d(252, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(252, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (13): BottleneckBlock(
+        (bn1): BatchNorm2d(264, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(264, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (14): BottleneckBlock(
+        (bn1): BatchNorm2d(276, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(276, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (15): BottleneckBlock(
+        (bn1): BatchNorm2d(288, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(288, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (trans2): TransitionBlock(
+    (bn1): BatchNorm2d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (relu): ReLU(inplace=True)
+    (conv1): Conv2d(300, 150, kernel_size=(1, 1), stride=(1, 1), bias=False)
+  )
+  (block3): DenseBlock(
+    (layer): Sequential(
+      (0): BottleneckBlock(
+        (bn1): BatchNorm2d(150, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(150, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (1): BottleneckBlock(
+        (bn1): BatchNorm2d(162, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(162, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BottleneckBlock(
+        (bn1): BatchNorm2d(174, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(174, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BottleneckBlock(
+        (bn1): BatchNorm2d(186, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(186, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (4): BottleneckBlock(
+        (bn1): BatchNorm2d(198, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(198, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (5): BottleneckBlock(
+        (bn1): BatchNorm2d(210, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(210, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (6): BottleneckBlock(
+        (bn1): BatchNorm2d(222, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(222, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (7): BottleneckBlock(
+        (bn1): BatchNorm2d(234, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(234, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (8): BottleneckBlock(
+        (bn1): BatchNorm2d(246, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(246, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (9): BottleneckBlock(
+        (bn1): BatchNorm2d(258, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(258, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (10): BottleneckBlock(
+        (bn1): BatchNorm2d(270, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(270, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (11): BottleneckBlock(
+        (bn1): BatchNorm2d(282, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(282, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (12): BottleneckBlock(
+        (bn1): BatchNorm2d(294, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(294, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (13): BottleneckBlock(
+        (bn1): BatchNorm2d(306, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(306, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (14): BottleneckBlock(
+        (bn1): BatchNorm2d(318, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(318, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (15): BottleneckBlock(
+        (bn1): BatchNorm2d(330, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(330, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (bn1): BatchNorm2d(342, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu): ReLU(inplace=True)
+  (fc): Linear(in_features=342, out_features=8, bias=True)
+  (softmax): Softmax(dim=1)
+)
+load GAN
+Setup optimizer
+0.001
+  0%|          | 0/100 [00:00<?, ?it/s]/home/xysong/.conda/envs/OoD/lib/python3.9/site-packages/torch/nn/functional.py:2904: UserWarning: reduction: 'mean' divides the total loss by both the batch size and the support size.'batchmean' divides only by the batch size, and aligns with the KL div math definition.'mean' will be changed to behave the same as 'batchmean' in the next major release.
+  warnings.warn(
+  1%|          | 1/100 [04:18<7:06:30, 258.49s/it]  2%|▏         | 2/100 [08:36<7:01:54, 258.31s/it]  3%|▎         | 3/100 [12:54<6:57:30, 258.25s/it]  4%|▍         | 4/100 [17:13<6:53:08, 258.22s/it]  5%|▌         | 5/100 [21:31<6:48:47, 258.19s/it]  6%|▌         | 6/100 [25:49<6:44:27, 258.17s/it]  7%|▋         | 7/100 [30:07<6:40:08, 258.16s/it]  8%|▊         | 8/100 [34:25<6:35:50, 258.16s/it]Classification Train Epoch: 1 [0/63553 (0%)]	Loss: 2.080009, KL fake Loss: 0.030227
+Classification Train Epoch: 1 [6400/63553 (10%)]	Loss: 1.835063, KL fake Loss: 0.049033
+Classification Train Epoch: 1 [12800/63553 (20%)]	Loss: 1.372258, KL fake Loss: 0.039633
+Classification Train Epoch: 1 [19200/63553 (30%)]	Loss: 0.565663, KL fake Loss: 0.076521
+Classification Train Epoch: 1 [25600/63553 (40%)]	Loss: 0.326718, KL fake Loss: 0.086204
+Classification Train Epoch: 1 [32000/63553 (50%)]	Loss: 0.311152, KL fake Loss: 0.072304
+Classification Train Epoch: 1 [38400/63553 (60%)]	Loss: 0.272417, KL fake Loss: 0.068486
+Classification Train Epoch: 1 [44800/63553 (70%)]	Loss: 0.219903, KL fake Loss: 0.055325
+Classification Train Epoch: 1 [51200/63553 (80%)]	Loss: 0.242588, KL fake Loss: 0.031661
+Classification Train Epoch: 1 [57600/63553 (91%)]	Loss: 0.363226, KL fake Loss: 0.051040
+
+Test set: Average loss: 1.2713, Accuracy: 17406/22777 (76%)
+
+Classification Train Epoch: 2 [0/63553 (0%)]	Loss: 0.146999, KL fake Loss: 0.023106
+Classification Train Epoch: 2 [6400/63553 (10%)]	Loss: 0.483260, KL fake Loss: 0.025978
+Classification Train Epoch: 2 [12800/63553 (20%)]	Loss: 0.188380, KL fake Loss: 0.037445
+Classification Train Epoch: 2 [19200/63553 (30%)]	Loss: 0.179939, KL fake Loss: 0.044502
+Classification Train Epoch: 2 [25600/63553 (40%)]	Loss: 0.230659, KL fake Loss: 0.042721
+Classification Train Epoch: 2 [32000/63553 (50%)]	Loss: 0.398481, KL fake Loss: 0.028341
+Classification Train Epoch: 2 [38400/63553 (60%)]	Loss: 0.177236, KL fake Loss: 0.020197
+Classification Train Epoch: 2 [44800/63553 (70%)]	Loss: 0.212817, KL fake Loss: 0.018128
+Classification Train Epoch: 2 [51200/63553 (80%)]	Loss: 0.260793, KL fake Loss: 0.016203
+Classification Train Epoch: 2 [57600/63553 (91%)]	Loss: 0.101571, KL fake Loss: 0.035216
+
+Test set: Average loss: 0.7573, Accuracy: 19163/22777 (84%)
+
+Classification Train Epoch: 3 [0/63553 (0%)]	Loss: 0.240674, KL fake Loss: 0.037429
+Classification Train Epoch: 3 [6400/63553 (10%)]	Loss: 0.097381, KL fake Loss: 0.015286
+Classification Train Epoch: 3 [12800/63553 (20%)]	Loss: 0.079774, KL fake Loss: 0.009985
+Classification Train Epoch: 3 [19200/63553 (30%)]	Loss: 0.313967, KL fake Loss: 0.016594
+Classification Train Epoch: 3 [25600/63553 (40%)]	Loss: 0.127599, KL fake Loss: 0.011459
+Classification Train Epoch: 3 [32000/63553 (50%)]	Loss: 0.234215, KL fake Loss: 0.012014
+Classification Train Epoch: 3 [38400/63553 (60%)]	Loss: 0.377843, KL fake Loss: 0.012207
+Classification Train Epoch: 3 [44800/63553 (70%)]	Loss: 0.284924, KL fake Loss: 0.021303
+Classification Train Epoch: 3 [51200/63553 (80%)]	Loss: 0.337700, KL fake Loss: 0.011975
+Classification Train Epoch: 3 [57600/63553 (91%)]	Loss: 0.167232, KL fake Loss: 0.005795
+
+Test set: Average loss: 0.6320, Accuracy: 20158/22777 (89%)
+
+Classification Train Epoch: 4 [0/63553 (0%)]	Loss: 0.411945, KL fake Loss: 0.048531
+Classification Train Epoch: 4 [6400/63553 (10%)]	Loss: 0.268055, KL fake Loss: 0.015304
+Classification Train Epoch: 4 [12800/63553 (20%)]	Loss: 0.074808, KL fake Loss: 0.016996
+Classification Train Epoch: 4 [19200/63553 (30%)]	Loss: 0.076472, KL fake Loss: 0.008360
+Classification Train Epoch: 4 [25600/63553 (40%)]	Loss: 0.303542, KL fake Loss: 0.025669
+Classification Train Epoch: 4 [32000/63553 (50%)]	Loss: 0.266742, KL fake Loss: 0.030527
+Classification Train Epoch: 4 [38400/63553 (60%)]	Loss: 0.128422, KL fake Loss: 0.007353
+Classification Train Epoch: 4 [44800/63553 (70%)]	Loss: 0.128369, KL fake Loss: 0.009027
+Classification Train Epoch: 4 [51200/63553 (80%)]	Loss: 0.354295, KL fake Loss: 0.007622
+Classification Train Epoch: 4 [57600/63553 (91%)]	Loss: 0.104363, KL fake Loss: 0.013876
+
+Test set: Average loss: 0.7737, Accuracy: 19758/22777 (87%)
+
+Classification Train Epoch: 5 [0/63553 (0%)]	Loss: 0.141314, KL fake Loss: 0.021219
+Classification Train Epoch: 5 [6400/63553 (10%)]	Loss: 0.145288, KL fake Loss: 0.006432
+Classification Train Epoch: 5 [12800/63553 (20%)]	Loss: 0.094337, KL fake Loss: 0.006735
+Classification Train Epoch: 5 [19200/63553 (30%)]	Loss: 0.093949, KL fake Loss: 0.018677
+Classification Train Epoch: 5 [25600/63553 (40%)]	Loss: 0.133952, KL fake Loss: 0.012128
+Classification Train Epoch: 5 [32000/63553 (50%)]	Loss: 0.209389, KL fake Loss: 0.011921
+Classification Train Epoch: 5 [38400/63553 (60%)]	Loss: 0.216338, KL fake Loss: 0.009262
+Classification Train Epoch: 5 [44800/63553 (70%)]	Loss: 0.035891, KL fake Loss: 0.006465
+Classification Train Epoch: 5 [51200/63553 (80%)]	Loss: 0.297686, KL fake Loss: 0.008132
+Classification Train Epoch: 5 [57600/63553 (91%)]	Loss: 0.161772, KL fake Loss: 0.003412
+
+Test set: Average loss: 0.4850, Accuracy: 20505/22777 (90%)
+
+Classification Train Epoch: 6 [0/63553 (0%)]	Loss: 0.058483, KL fake Loss: 0.011178
+Classification Train Epoch: 6 [6400/63553 (10%)]	Loss: 0.166648, KL fake Loss: 0.002347
+Classification Train Epoch: 6 [12800/63553 (20%)]	Loss: 0.127859, KL fake Loss: 0.003760
+Classification Train Epoch: 6 [19200/63553 (30%)]	Loss: 0.011463, KL fake Loss: 0.010407
+Classification Train Epoch: 6 [25600/63553 (40%)]	Loss: 0.060948, KL fake Loss: 0.004261
+Classification Train Epoch: 6 [32000/63553 (50%)]	Loss: 0.090198, KL fake Loss: 0.007172
+Classification Train Epoch: 6 [38400/63553 (60%)]	Loss: 0.173181, KL fake Loss: 0.003602
+Classification Train Epoch: 6 [44800/63553 (70%)]	Loss: 0.074596, KL fake Loss: 0.003440
+Classification Train Epoch: 6 [51200/63553 (80%)]	Loss: 0.063203, KL fake Loss: 0.003933
+Classification Train Epoch: 6 [57600/63553 (91%)]	Loss: 0.203255, KL fake Loss: 0.002081
+
+Test set: Average loss: 0.4619, Accuracy: 20542/22777 (90%)
+
+Classification Train Epoch: 7 [0/63553 (0%)]	Loss: 0.184938, KL fake Loss: 0.005230
+Classification Train Epoch: 7 [6400/63553 (10%)]	Loss: 0.173228, KL fake Loss: 0.002928
+Classification Train Epoch: 7 [12800/63553 (20%)]	Loss: 0.027037, KL fake Loss: 0.001794
+Classification Train Epoch: 7 [19200/63553 (30%)]	Loss: 0.168139, KL fake Loss: 0.015138
+Classification Train Epoch: 7 [25600/63553 (40%)]	Loss: 0.090709, KL fake Loss: 0.002150
+Classification Train Epoch: 7 [32000/63553 (50%)]	Loss: 0.055960, KL fake Loss: 0.002408
+Classification Train Epoch: 7 [38400/63553 (60%)]	Loss: 0.019769, KL fake Loss: 0.002886
+Classification Train Epoch: 7 [44800/63553 (70%)]	Loss: 0.042585, KL fake Loss: 0.001844
+Classification Train Epoch: 7 [51200/63553 (80%)]	Loss: 0.039545, KL fake Loss: 0.002344
+Classification Train Epoch: 7 [57600/63553 (91%)]	Loss: 0.098246, KL fake Loss: 0.002068
+
+Test set: Average loss: 0.4174, Accuracy: 20655/22777 (91%)
+
+Classification Train Epoch: 8 [0/63553 (0%)]	Loss: 0.116476, KL fake Loss: 0.026129
+Classification Train Epoch: 8 [6400/63553 (10%)]	Loss: 0.062619, KL fake Loss: 0.001375
+Classification Train Epoch: 8 [12800/63553 (20%)]	Loss: 0.055261, KL fake Loss: 0.006245
+Classification Train Epoch: 8 [19200/63553 (30%)]	Loss: 0.088775, KL fake Loss: 0.001852
+Classification Train Epoch: 8 [25600/63553 (40%)]	Loss: 0.082894, KL fake Loss: 0.001962
+Classification Train Epoch: 8 [32000/63553 (50%)]	Loss: 0.132336, KL fake Loss: 0.005608
+Classification Train Epoch: 8 [38400/63553 (60%)]	Loss: 0.046600, KL fake Loss: 0.001241
+Classification Train Epoch: 8 [44800/63553 (70%)]	Loss: 0.422320, KL fake Loss: 0.002408
+Classification Train Epoch: 8 [51200/63553 (80%)]	Loss: 0.058848, KL fake Loss: 0.001353
+Classification Train Epoch: 8 [57600/63553 (91%)]	Loss: 0.067647, KL fake Loss: 0.004300
+
+Test set: Average loss: 0.3394, Accuracy: 20929/22777 (92%)
+
+Classification Train Epoch: 9 [0/63553 (0%)]	Loss: 0.259280, KL fake Loss: 0.024281
+Classification Train Epoch: 9 [6400/63553 (10%)]	Loss: 0.016362, KL fake Loss: 0.004442
+Classification Train Epoch: 9 [12800/63553 (20%)]	Loss: 0.072310, KL fake Loss: 0.004306
+Classification Train Epoch: 9 [19200/63553 (30%)]	Loss: 0.081433, KL fake Loss: 0.000928
+Classification Train Epoch: 9 [25600/63553 (40%)]	Loss: 0.123586, KL fake Loss: 0.001363
+Classification Train Epoch: 9 [32000/63553 (50%)]	Loss: 0.084001, KL fake Loss: 0.001603
+Classification Train Epoch: 9 [38400/63553 (60%)]	Loss: 0.231411, KL fake Loss: 0.002822
+  9%|▉         | 9/100 [38:43<6:31:31, 258.15s/it] 10%|█         | 10/100 [43:01<6:27:12, 258.14s/it] 11%|█         | 11/100 [47:19<6:22:53, 258.13s/it] 12%|█▏        | 12/100 [51:38<6:18:35, 258.13s/it] 13%|█▎        | 13/100 [55:56<6:14:17, 258.13s/it] 14%|█▍        | 14/100 [1:00:14<6:09:58, 258.12s/it] 15%|█▌        | 15/100 [1:04:32<6:05:39, 258.12s/it] 16%|█▌        | 16/100 [1:08:50<6:01:21, 258.12s/it] 17%|█▋        | 17/100 [1:13:08<5:57:03, 258.12s/it]Classification Train Epoch: 9 [44800/63553 (70%)]	Loss: 0.169446, KL fake Loss: 0.003021
+Classification Train Epoch: 9 [51200/63553 (80%)]	Loss: 0.102415, KL fake Loss: 0.001316
+Classification Train Epoch: 9 [57600/63553 (91%)]	Loss: 0.034426, KL fake Loss: 0.001539
+
+Test set: Average loss: 0.5685, Accuracy: 19953/22777 (88%)
+
+Classification Train Epoch: 10 [0/63553 (0%)]	Loss: 0.042565, KL fake Loss: 0.011873
+Classification Train Epoch: 10 [6400/63553 (10%)]	Loss: 0.019848, KL fake Loss: 0.001232
+Classification Train Epoch: 10 [12800/63553 (20%)]	Loss: 0.074525, KL fake Loss: 0.000894
+Classification Train Epoch: 10 [19200/63553 (30%)]	Loss: 0.007190, KL fake Loss: 0.001428
+Classification Train Epoch: 10 [25600/63553 (40%)]	Loss: 0.029507, KL fake Loss: 0.002437
+Classification Train Epoch: 10 [32000/63553 (50%)]	Loss: 0.010925, KL fake Loss: 0.001731
+Classification Train Epoch: 10 [38400/63553 (60%)]	Loss: 0.153864, KL fake Loss: 0.002359
+Classification Train Epoch: 10 [44800/63553 (70%)]	Loss: 0.052043, KL fake Loss: 0.000830
+Classification Train Epoch: 10 [51200/63553 (80%)]	Loss: 0.066055, KL fake Loss: 0.006141
+Classification Train Epoch: 10 [57600/63553 (91%)]	Loss: 0.084317, KL fake Loss: 0.002232
+
+Test set: Average loss: 0.4291, Accuracy: 20401/22777 (90%)
+
+Classification Train Epoch: 11 [0/63553 (0%)]	Loss: 0.065671, KL fake Loss: 0.037298
+Classification Train Epoch: 11 [6400/63553 (10%)]	Loss: 0.025534, KL fake Loss: 0.002125
+Classification Train Epoch: 11 [12800/63553 (20%)]	Loss: 0.034741, KL fake Loss: 0.000632
+Classification Train Epoch: 11 [19200/63553 (30%)]	Loss: 0.030035, KL fake Loss: 0.001108
+Classification Train Epoch: 11 [25600/63553 (40%)]	Loss: 0.109276, KL fake Loss: 0.000521
+Classification Train Epoch: 11 [32000/63553 (50%)]	Loss: 0.117627, KL fake Loss: 0.013768
+Classification Train Epoch: 11 [38400/63553 (60%)]	Loss: 0.181152, KL fake Loss: 0.002249
+Classification Train Epoch: 11 [44800/63553 (70%)]	Loss: 0.104529, KL fake Loss: 0.001067
+Classification Train Epoch: 11 [51200/63553 (80%)]	Loss: 0.081418, KL fake Loss: 0.000308
+Classification Train Epoch: 11 [57600/63553 (91%)]	Loss: 0.128754, KL fake Loss: 0.000937
+
+Test set: Average loss: 0.3426, Accuracy: 20956/22777 (92%)
+
+Classification Train Epoch: 12 [0/63553 (0%)]	Loss: 0.074901, KL fake Loss: 0.005105
+Classification Train Epoch: 12 [6400/63553 (10%)]	Loss: 0.143227, KL fake Loss: 0.000693
+Classification Train Epoch: 12 [12800/63553 (20%)]	Loss: 0.038468, KL fake Loss: 0.000497
+Classification Train Epoch: 12 [19200/63553 (30%)]	Loss: 0.063212, KL fake Loss: 0.001687
+Classification Train Epoch: 12 [25600/63553 (40%)]	Loss: 0.020112, KL fake Loss: 0.000445
+Classification Train Epoch: 12 [32000/63553 (50%)]	Loss: 0.113805, KL fake Loss: 0.001241
+Classification Train Epoch: 12 [38400/63553 (60%)]	Loss: 0.145259, KL fake Loss: 0.001840
+Classification Train Epoch: 12 [44800/63553 (70%)]	Loss: 0.038157, KL fake Loss: 0.002158
+Classification Train Epoch: 12 [51200/63553 (80%)]	Loss: 0.042129, KL fake Loss: 0.001618
+Classification Train Epoch: 12 [57600/63553 (91%)]	Loss: 0.066189, KL fake Loss: 0.000551
+
+Test set: Average loss: 0.3370, Accuracy: 20970/22777 (92%)
+
+Classification Train Epoch: 13 [0/63553 (0%)]	Loss: 0.019188, KL fake Loss: 0.001791
+Classification Train Epoch: 13 [6400/63553 (10%)]	Loss: 0.061307, KL fake Loss: 0.000356
+Classification Train Epoch: 13 [12800/63553 (20%)]	Loss: 0.031098, KL fake Loss: 0.000686
+Classification Train Epoch: 13 [19200/63553 (30%)]	Loss: 0.018013, KL fake Loss: 0.000594
+Classification Train Epoch: 13 [25600/63553 (40%)]	Loss: 0.069985, KL fake Loss: 0.000407
+Classification Train Epoch: 13 [32000/63553 (50%)]	Loss: 0.004138, KL fake Loss: 0.000461
+Classification Train Epoch: 13 [38400/63553 (60%)]	Loss: 0.011283, KL fake Loss: 0.002054
+Classification Train Epoch: 13 [44800/63553 (70%)]	Loss: 0.158543, KL fake Loss: 0.001995
+Classification Train Epoch: 13 [51200/63553 (80%)]	Loss: 0.077023, KL fake Loss: 0.000621
+Classification Train Epoch: 13 [57600/63553 (91%)]	Loss: 0.185071, KL fake Loss: 0.005245
+
+Test set: Average loss: 0.3661, Accuracy: 20627/22777 (91%)
+
+Classification Train Epoch: 14 [0/63553 (0%)]	Loss: 0.039587, KL fake Loss: 0.005892
+Classification Train Epoch: 14 [6400/63553 (10%)]	Loss: 0.075837, KL fake Loss: 0.000964
+Classification Train Epoch: 14 [12800/63553 (20%)]	Loss: 0.051975, KL fake Loss: 0.000562
+Classification Train Epoch: 14 [19200/63553 (30%)]	Loss: 0.004667, KL fake Loss: 0.001123
+Classification Train Epoch: 14 [25600/63553 (40%)]	Loss: 0.078034, KL fake Loss: 0.001232
+Classification Train Epoch: 14 [32000/63553 (50%)]	Loss: 0.046936, KL fake Loss: 0.000228
+Classification Train Epoch: 14 [38400/63553 (60%)]	Loss: 0.086732, KL fake Loss: 0.002303
+Classification Train Epoch: 14 [44800/63553 (70%)]	Loss: 0.131518, KL fake Loss: 0.000299
+Classification Train Epoch: 14 [51200/63553 (80%)]	Loss: 0.084551, KL fake Loss: 0.001927
+Classification Train Epoch: 14 [57600/63553 (91%)]	Loss: 0.100412, KL fake Loss: 0.002969
+
+Test set: Average loss: 0.2677, Accuracy: 21351/22777 (94%)
+
+Classification Train Epoch: 15 [0/63553 (0%)]	Loss: 0.011825, KL fake Loss: 0.007791
+Classification Train Epoch: 15 [6400/63553 (10%)]	Loss: 0.067880, KL fake Loss: 0.000959
+Classification Train Epoch: 15 [12800/63553 (20%)]	Loss: 0.017694, KL fake Loss: 0.000167
+Classification Train Epoch: 15 [19200/63553 (30%)]	Loss: 0.004533, KL fake Loss: 0.001748
+Classification Train Epoch: 15 [25600/63553 (40%)]	Loss: 0.009423, KL fake Loss: 0.002676
+Classification Train Epoch: 15 [32000/63553 (50%)]	Loss: 0.007915, KL fake Loss: 0.000516
+Classification Train Epoch: 15 [38400/63553 (60%)]	Loss: 0.108424, KL fake Loss: 0.000263
+Classification Train Epoch: 15 [44800/63553 (70%)]	Loss: 0.200799, KL fake Loss: 0.000904
+Classification Train Epoch: 15 [51200/63553 (80%)]	Loss: 0.048977, KL fake Loss: 0.001122
+Classification Train Epoch: 15 [57600/63553 (91%)]	Loss: 0.002817, KL fake Loss: 0.002502
+
+Test set: Average loss: 0.2859, Accuracy: 21137/22777 (93%)
+
+Classification Train Epoch: 16 [0/63553 (0%)]	Loss: 0.010987, KL fake Loss: 0.019206
+Classification Train Epoch: 16 [6400/63553 (10%)]	Loss: 0.045768, KL fake Loss: 0.000875
+Classification Train Epoch: 16 [12800/63553 (20%)]	Loss: 0.017424, KL fake Loss: 0.000713
+Classification Train Epoch: 16 [19200/63553 (30%)]	Loss: 0.006792, KL fake Loss: 0.000506
+Classification Train Epoch: 16 [25600/63553 (40%)]	Loss: 0.105675, KL fake Loss: 0.000829
+Classification Train Epoch: 16 [32000/63553 (50%)]	Loss: 0.008544, KL fake Loss: 0.000905
+Classification Train Epoch: 16 [38400/63553 (60%)]	Loss: 0.090989, KL fake Loss: 0.000580
+Classification Train Epoch: 16 [44800/63553 (70%)]	Loss: 0.029621, KL fake Loss: 0.015286
+Classification Train Epoch: 16 [51200/63553 (80%)]	Loss: 0.168958, KL fake Loss: 0.000988
+Classification Train Epoch: 16 [57600/63553 (91%)]	Loss: 0.131231, KL fake Loss: 0.004404
+
+Test set: Average loss: 0.3626, Accuracy: 20840/22777 (91%)
+
+Classification Train Epoch: 17 [0/63553 (0%)]	Loss: 0.003202, KL fake Loss: 0.003181
+Classification Train Epoch: 17 [6400/63553 (10%)]	Loss: 0.013597, KL fake Loss: 0.000333
+Classification Train Epoch: 17 [12800/63553 (20%)]	Loss: 0.006251, KL fake Loss: 0.000285
+Classification Train Epoch: 17 [19200/63553 (30%)]	Loss: 0.014692, KL fake Loss: 0.001177
+Classification Train Epoch: 17 [25600/63553 (40%)]	Loss: 0.045194, KL fake Loss: 0.001377
+Classification Train Epoch: 17 [32000/63553 (50%)]	Loss: 0.011426, KL fake Loss: 0.000348
+Classification Train Epoch: 17 [38400/63553 (60%)]	Loss: 0.047473, KL fake Loss: 0.000246
+Classification Train Epoch: 17 [44800/63553 (70%)]	Loss: 0.034563, KL fake Loss: 0.001187
+Classification Train Epoch: 17 [51200/63553 (80%)]	Loss: 0.027587, KL fake Loss: 0.001748
+Classification Train Epoch: 17 [57600/63553 (91%)]	Loss: 0.016552, KL fake Loss: 0.002062
+
+Test set: Average loss: 0.2975, Accuracy: 21221/22777 (93%)
+
+Classification Train Epoch: 18 [0/63553 (0%)]	Loss: 0.015731, KL fake Loss: 0.002702
+Classification Train Epoch: 18 [6400/63553 (10%)]	Loss: 0.024018, KL fake Loss: 0.000660
+ 18%|█▊        | 18/100 [1:17:26<5:52:44, 258.11s/it] 19%|█▉        | 19/100 [1:21:44<5:48:25, 258.10s/it] 20%|██        | 20/100 [1:26:02<5:44:09, 258.12s/it] 21%|██        | 21/100 [1:30:21<5:39:51, 258.11s/it] 22%|██▏       | 22/100 [1:34:39<5:35:31, 258.10s/it] 23%|██▎       | 23/100 [1:38:57<5:31:12, 258.09s/it] 24%|██▍       | 24/100 [1:43:15<5:26:54, 258.08s/it] 25%|██▌       | 25/100 [1:47:33<5:22:36, 258.08s/it]Classification Train Epoch: 18 [12800/63553 (20%)]	Loss: 0.016525, KL fake Loss: 0.001298
+Classification Train Epoch: 18 [19200/63553 (30%)]	Loss: 0.099665, KL fake Loss: 0.000276
+Classification Train Epoch: 18 [25600/63553 (40%)]	Loss: 0.028873, KL fake Loss: 0.004596
+Classification Train Epoch: 18 [32000/63553 (50%)]	Loss: 0.032746, KL fake Loss: 0.000114
+Classification Train Epoch: 18 [38400/63553 (60%)]	Loss: 0.066009, KL fake Loss: 0.000933
+Classification Train Epoch: 18 [44800/63553 (70%)]	Loss: 0.028937, KL fake Loss: 0.000972
+Classification Train Epoch: 18 [51200/63553 (80%)]	Loss: 0.047803, KL fake Loss: 0.000254
+Classification Train Epoch: 18 [57600/63553 (91%)]	Loss: 0.004872, KL fake Loss: 0.000243
+
+Test set: Average loss: 0.3303, Accuracy: 20876/22777 (92%)
+
+Classification Train Epoch: 19 [0/63553 (0%)]	Loss: 0.029203, KL fake Loss: 0.003146
+Classification Train Epoch: 19 [6400/63553 (10%)]	Loss: 0.073915, KL fake Loss: 0.000239
+Classification Train Epoch: 19 [12800/63553 (20%)]	Loss: 0.006349, KL fake Loss: 0.001898
+Classification Train Epoch: 19 [19200/63553 (30%)]	Loss: 0.020044, KL fake Loss: 0.001382
+Classification Train Epoch: 19 [25600/63553 (40%)]	Loss: 0.046413, KL fake Loss: 0.000220
+Classification Train Epoch: 19 [32000/63553 (50%)]	Loss: 0.003584, KL fake Loss: 0.000400
+Classification Train Epoch: 19 [38400/63553 (60%)]	Loss: 0.007276, KL fake Loss: 0.002750
+Classification Train Epoch: 19 [44800/63553 (70%)]	Loss: 0.086199, KL fake Loss: 0.002788
+Classification Train Epoch: 19 [51200/63553 (80%)]	Loss: 0.050179, KL fake Loss: 0.001227
+Classification Train Epoch: 19 [57600/63553 (91%)]	Loss: 0.028853, KL fake Loss: 0.002518
+
+Test set: Average loss: 0.3084, Accuracy: 21034/22777 (92%)
+
+Classification Train Epoch: 20 [0/63553 (0%)]	Loss: 0.074787, KL fake Loss: 0.000748
+Classification Train Epoch: 20 [6400/63553 (10%)]	Loss: 0.060010, KL fake Loss: 0.000142
+Classification Train Epoch: 20 [12800/63553 (20%)]	Loss: 0.122622, KL fake Loss: 0.000205
+Classification Train Epoch: 20 [19200/63553 (30%)]	Loss: 0.050347, KL fake Loss: 0.010586
+Classification Train Epoch: 20 [25600/63553 (40%)]	Loss: 0.026047, KL fake Loss: 0.000685
+Classification Train Epoch: 20 [32000/63553 (50%)]	Loss: 0.011131, KL fake Loss: 0.000327
+Classification Train Epoch: 20 [38400/63553 (60%)]	Loss: 0.072222, KL fake Loss: 0.007524
+Classification Train Epoch: 20 [44800/63553 (70%)]	Loss: 0.122365, KL fake Loss: 0.000170
+Classification Train Epoch: 20 [51200/63553 (80%)]	Loss: 0.042677, KL fake Loss: 0.000392
+Classification Train Epoch: 20 [57600/63553 (91%)]	Loss: 0.002470, KL fake Loss: 0.016643
+
+Test set: Average loss: 0.4121, Accuracy: 20842/22777 (92%)
+
+Classification Train Epoch: 21 [0/63553 (0%)]	Loss: 0.004431, KL fake Loss: 0.004608
+Classification Train Epoch: 21 [6400/63553 (10%)]	Loss: 0.007978, KL fake Loss: 0.002066
+Classification Train Epoch: 21 [12800/63553 (20%)]	Loss: 0.031500, KL fake Loss: 0.000106
+Classification Train Epoch: 21 [19200/63553 (30%)]	Loss: 0.003687, KL fake Loss: 0.000586
+Classification Train Epoch: 21 [25600/63553 (40%)]	Loss: 0.005450, KL fake Loss: 0.004371
+Classification Train Epoch: 21 [32000/63553 (50%)]	Loss: 0.002745, KL fake Loss: 0.006053
+Classification Train Epoch: 21 [38400/63553 (60%)]	Loss: 0.037578, KL fake Loss: 0.007092
+Classification Train Epoch: 21 [44800/63553 (70%)]	Loss: 0.026654, KL fake Loss: 0.002667
+Classification Train Epoch: 21 [51200/63553 (80%)]	Loss: 0.002190, KL fake Loss: 0.000445
+Classification Train Epoch: 21 [57600/63553 (91%)]	Loss: 0.023375, KL fake Loss: 0.009137
+
+Test set: Average loss: 0.4568, Accuracy: 20287/22777 (89%)
+
+Classification Train Epoch: 22 [0/63553 (0%)]	Loss: 0.003929, KL fake Loss: 0.042034
+Classification Train Epoch: 22 [6400/63553 (10%)]	Loss: 0.014846, KL fake Loss: 0.000170
+Classification Train Epoch: 22 [12800/63553 (20%)]	Loss: 0.003307, KL fake Loss: 0.000100
+Classification Train Epoch: 22 [19200/63553 (30%)]	Loss: 0.008700, KL fake Loss: 0.000489
+Classification Train Epoch: 22 [25600/63553 (40%)]	Loss: 0.003694, KL fake Loss: 0.000104
+Classification Train Epoch: 22 [32000/63553 (50%)]	Loss: 0.014001, KL fake Loss: 0.001455
+Classification Train Epoch: 22 [38400/63553 (60%)]	Loss: 0.020321, KL fake Loss: 0.000351
+Classification Train Epoch: 22 [44800/63553 (70%)]	Loss: 0.094211, KL fake Loss: 0.000290
+Classification Train Epoch: 22 [51200/63553 (80%)]	Loss: 0.063579, KL fake Loss: 0.000370
+Classification Train Epoch: 22 [57600/63553 (91%)]	Loss: 0.013398, KL fake Loss: 0.002445
+
+Test set: Average loss: 0.6075, Accuracy: 19720/22777 (87%)
+
+Classification Train Epoch: 23 [0/63553 (0%)]	Loss: 0.006110, KL fake Loss: 0.000750
+Classification Train Epoch: 23 [6400/63553 (10%)]	Loss: 0.004275, KL fake Loss: 0.000261
+Classification Train Epoch: 23 [12800/63553 (20%)]	Loss: 0.064542, KL fake Loss: 0.000324
+Classification Train Epoch: 23 [19200/63553 (30%)]	Loss: 0.006471, KL fake Loss: 0.000450
+Classification Train Epoch: 23 [25600/63553 (40%)]	Loss: 0.010092, KL fake Loss: 0.000465
+Classification Train Epoch: 23 [32000/63553 (50%)]	Loss: 0.008803, KL fake Loss: 0.000144
+Classification Train Epoch: 23 [38400/63553 (60%)]	Loss: 0.002003, KL fake Loss: 0.000325
+Classification Train Epoch: 23 [44800/63553 (70%)]	Loss: 0.032132, KL fake Loss: 0.001730
+Classification Train Epoch: 23 [51200/63553 (80%)]	Loss: 0.049714, KL fake Loss: 0.000228
+Classification Train Epoch: 23 [57600/63553 (91%)]	Loss: 0.024033, KL fake Loss: 0.000322
+
+Test set: Average loss: 0.3850, Accuracy: 20893/22777 (92%)
+
+Classification Train Epoch: 24 [0/63553 (0%)]	Loss: 0.011531, KL fake Loss: 0.029064
+Classification Train Epoch: 24 [6400/63553 (10%)]	Loss: 0.065563, KL fake Loss: 0.001713
+Classification Train Epoch: 24 [12800/63553 (20%)]	Loss: 0.000942, KL fake Loss: 0.000459
+Classification Train Epoch: 24 [19200/63553 (30%)]	Loss: 0.010717, KL fake Loss: 0.000257
+Classification Train Epoch: 24 [25600/63553 (40%)]	Loss: 0.002839, KL fake Loss: 0.000136
+Classification Train Epoch: 24 [32000/63553 (50%)]	Loss: 0.001767, KL fake Loss: 0.000060
+Classification Train Epoch: 24 [38400/63553 (60%)]	Loss: 0.035736, KL fake Loss: 0.000267
+Classification Train Epoch: 24 [44800/63553 (70%)]	Loss: 0.023997, KL fake Loss: 0.000329
+Classification Train Epoch: 24 [51200/63553 (80%)]	Loss: 0.007512, KL fake Loss: 0.000105
+Classification Train Epoch: 24 [57600/63553 (91%)]	Loss: 0.029443, KL fake Loss: 0.000172
+
+Test set: Average loss: 0.5186, Accuracy: 20241/22777 (89%)
+
+Classification Train Epoch: 25 [0/63553 (0%)]	Loss: 0.008144, KL fake Loss: 0.001193
+Classification Train Epoch: 25 [6400/63553 (10%)]	Loss: 0.000678, KL fake Loss: 0.000154
+Classification Train Epoch: 25 [12800/63553 (20%)]	Loss: 0.012329, KL fake Loss: 0.000228
+Classification Train Epoch: 25 [19200/63553 (30%)]	Loss: 0.034230, KL fake Loss: 0.001357
+Classification Train Epoch: 25 [25600/63553 (40%)]	Loss: 0.087119, KL fake Loss: 0.000063
+Classification Train Epoch: 25 [32000/63553 (50%)]	Loss: 0.006909, KL fake Loss: 0.002280
+Classification Train Epoch: 25 [38400/63553 (60%)]	Loss: 0.005440, KL fake Loss: 0.001149
+Classification Train Epoch: 25 [44800/63553 (70%)]	Loss: 0.130961, KL fake Loss: 0.000356
+Classification Train Epoch: 25 [51200/63553 (80%)]	Loss: 0.011295, KL fake Loss: 0.000563
+Classification Train Epoch: 25 [57600/63553 (91%)]	Loss: 0.017917, KL fake Loss: 0.027907
+
+Test set: Average loss: 0.5600, Accuracy: 20213/22777 (89%)
+
+Classification Train Epoch: 26 [0/63553 (0%)]	Loss: 0.009454, KL fake Loss: 0.000962
+Classification Train Epoch: 26 [6400/63553 (10%)]	Loss: 0.015828, KL fake Loss: 0.000640
+Classification Train Epoch: 26 [12800/63553 (20%)]	Loss: 0.054590, KL fake Loss: 0.001671
+Classification Train Epoch: 26 [19200/63553 (30%)]	Loss: 0.006752, KL fake Loss: 0.001258
+Classification Train Epoch: 26 [25600/63553 (40%)]	Loss: 0.000868, KL fake Loss: 0.025086
+Classification Train Epoch: 26 [32000/63553 (50%)]	Loss: 0.001033, KL fake Loss: 0.001521
+Classification Train Epoch: 26 [38400/63553 (60%)]	Loss: 0.007510, KL fake Loss: 0.001558
+Classification Train Epoch: 26 [44800/63553 (70%)]	Loss: 0.008185, KL fake Loss: 0.000849
+ 26%|██▌       | 26/100 [1:51:51<5:18:17, 258.08s/it] 27%|██▋       | 27/100 [1:56:09<5:13:59, 258.07s/it] 28%|██▊       | 28/100 [2:00:27<5:09:41, 258.07s/it] 29%|██▉       | 29/100 [2:04:45<5:05:22, 258.07s/it] 30%|███       | 30/100 [2:09:03<5:01:04, 258.06s/it] 31%|███       | 31/100 [2:13:21<4:56:45, 258.05s/it] 32%|███▏      | 32/100 [2:17:39<4:52:27, 258.05s/it] 33%|███▎      | 33/100 [2:21:57<4:48:08, 258.04s/it] 34%|███▍      | 34/100 [2:26:15<4:43:51, 258.05s/it]Classification Train Epoch: 26 [51200/63553 (80%)]	Loss: 0.067906, KL fake Loss: 0.000696
+Classification Train Epoch: 26 [57600/63553 (91%)]	Loss: 0.004257, KL fake Loss: 0.001560
+
+Test set: Average loss: 0.3877, Accuracy: 20761/22777 (91%)
+
+Classification Train Epoch: 27 [0/63553 (0%)]	Loss: 0.001025, KL fake Loss: 0.000711
+Classification Train Epoch: 27 [6400/63553 (10%)]	Loss: 0.006501, KL fake Loss: 0.001491
+Classification Train Epoch: 27 [12800/63553 (20%)]	Loss: 0.007763, KL fake Loss: 0.000513
+Classification Train Epoch: 27 [19200/63553 (30%)]	Loss: 0.010594, KL fake Loss: 0.044441
+Classification Train Epoch: 27 [25600/63553 (40%)]	Loss: 0.026712, KL fake Loss: 0.000854
+Classification Train Epoch: 27 [32000/63553 (50%)]	Loss: 0.040286, KL fake Loss: 0.000934
+Classification Train Epoch: 27 [38400/63553 (60%)]	Loss: 0.003733, KL fake Loss: 0.000650
+Classification Train Epoch: 27 [44800/63553 (70%)]	Loss: 0.002901, KL fake Loss: 0.000495
+Classification Train Epoch: 27 [51200/63553 (80%)]	Loss: 0.014760, KL fake Loss: 0.000526
+Classification Train Epoch: 27 [57600/63553 (91%)]	Loss: 0.001355, KL fake Loss: 0.004508
+
+Test set: Average loss: 0.6635, Accuracy: 19918/22777 (87%)
+
+Classification Train Epoch: 28 [0/63553 (0%)]	Loss: 0.042744, KL fake Loss: 0.037176
+Classification Train Epoch: 28 [6400/63553 (10%)]	Loss: 0.013851, KL fake Loss: 0.000627
+Classification Train Epoch: 28 [12800/63553 (20%)]	Loss: 0.005152, KL fake Loss: 0.001053
+Classification Train Epoch: 28 [19200/63553 (30%)]	Loss: 0.063510, KL fake Loss: 0.001866
+Classification Train Epoch: 28 [25600/63553 (40%)]	Loss: 0.008108, KL fake Loss: 0.003779
+Classification Train Epoch: 28 [32000/63553 (50%)]	Loss: 0.077229, KL fake Loss: 0.001340
+Classification Train Epoch: 28 [38400/63553 (60%)]	Loss: 0.004701, KL fake Loss: 0.000430
+Classification Train Epoch: 28 [44800/63553 (70%)]	Loss: 0.001937, KL fake Loss: 0.000179
+Classification Train Epoch: 28 [51200/63553 (80%)]	Loss: 0.041002, KL fake Loss: 0.000225
+Classification Train Epoch: 28 [57600/63553 (91%)]	Loss: 0.014368, KL fake Loss: 0.007043
+
+Test set: Average loss: 0.4830, Accuracy: 20460/22777 (90%)
+
+Classification Train Epoch: 29 [0/63553 (0%)]	Loss: 0.010010, KL fake Loss: 0.002841
+Classification Train Epoch: 29 [6400/63553 (10%)]	Loss: 0.013307, KL fake Loss: 0.000572
+Classification Train Epoch: 29 [12800/63553 (20%)]	Loss: 0.005472, KL fake Loss: 0.000173
+Classification Train Epoch: 29 [19200/63553 (30%)]	Loss: 0.017776, KL fake Loss: 0.000025
+Classification Train Epoch: 29 [25600/63553 (40%)]	Loss: 0.013205, KL fake Loss: 0.000056
+Classification Train Epoch: 29 [32000/63553 (50%)]	Loss: 0.009654, KL fake Loss: 0.000088
+Classification Train Epoch: 29 [38400/63553 (60%)]	Loss: 0.084176, KL fake Loss: 0.002337
+Classification Train Epoch: 29 [44800/63553 (70%)]	Loss: 0.004174, KL fake Loss: 0.000199
+Classification Train Epoch: 29 [51200/63553 (80%)]	Loss: 0.008965, KL fake Loss: 0.000879
+Classification Train Epoch: 29 [57600/63553 (91%)]	Loss: 0.037863, KL fake Loss: 0.001738
+
+Test set: Average loss: 0.5841, Accuracy: 20174/22777 (89%)
+
+Classification Train Epoch: 30 [0/63553 (0%)]	Loss: 0.008720, KL fake Loss: 0.003163
+Classification Train Epoch: 30 [6400/63553 (10%)]	Loss: 0.004746, KL fake Loss: 0.005487
+Classification Train Epoch: 30 [12800/63553 (20%)]	Loss: 0.006717, KL fake Loss: 0.006348
+Classification Train Epoch: 30 [19200/63553 (30%)]	Loss: 0.023144, KL fake Loss: 0.001048
+Classification Train Epoch: 30 [25600/63553 (40%)]	Loss: 0.002808, KL fake Loss: 0.000206
+Classification Train Epoch: 30 [32000/63553 (50%)]	Loss: 0.039631, KL fake Loss: 0.000616
+Classification Train Epoch: 30 [38400/63553 (60%)]	Loss: 0.002205, KL fake Loss: 0.000189
+Classification Train Epoch: 30 [44800/63553 (70%)]	Loss: 0.017496, KL fake Loss: 0.000175
+Classification Train Epoch: 30 [51200/63553 (80%)]	Loss: 0.027071, KL fake Loss: 0.000401
+Classification Train Epoch: 30 [57600/63553 (91%)]	Loss: 0.011404, KL fake Loss: 0.014756
+
+Test set: Average loss: 0.4379, Accuracy: 20727/22777 (91%)
+
+Classification Train Epoch: 31 [0/63553 (0%)]	Loss: 0.006370, KL fake Loss: 0.001880
+Classification Train Epoch: 31 [6400/63553 (10%)]	Loss: 0.014399, KL fake Loss: 0.005100
+Classification Train Epoch: 31 [12800/63553 (20%)]	Loss: 0.000073, KL fake Loss: 0.003288
+Classification Train Epoch: 31 [19200/63553 (30%)]	Loss: 0.011930, KL fake Loss: 0.000143
+Classification Train Epoch: 31 [25600/63553 (40%)]	Loss: 0.003701, KL fake Loss: 0.000150
+Classification Train Epoch: 31 [32000/63553 (50%)]	Loss: 0.000520, KL fake Loss: 0.000355
+Classification Train Epoch: 31 [38400/63553 (60%)]	Loss: 0.033002, KL fake Loss: 0.001209
+Classification Train Epoch: 31 [44800/63553 (70%)]	Loss: 0.052215, KL fake Loss: 0.002843
+Classification Train Epoch: 31 [51200/63553 (80%)]	Loss: 0.013269, KL fake Loss: 0.009636
+Classification Train Epoch: 31 [57600/63553 (91%)]	Loss: 0.055741, KL fake Loss: 0.004744
+
+Test set: Average loss: 0.5775, Accuracy: 20050/22777 (88%)
+
+Classification Train Epoch: 32 [0/63553 (0%)]	Loss: 0.073578, KL fake Loss: 0.011472
+Classification Train Epoch: 32 [6400/63553 (10%)]	Loss: 0.119133, KL fake Loss: 0.000408
+Classification Train Epoch: 32 [12800/63553 (20%)]	Loss: 0.095312, KL fake Loss: 0.002024
+Classification Train Epoch: 32 [19200/63553 (30%)]	Loss: 0.093263, KL fake Loss: 0.000387
+Classification Train Epoch: 32 [25600/63553 (40%)]	Loss: 0.001969, KL fake Loss: 0.000246
+Classification Train Epoch: 32 [32000/63553 (50%)]	Loss: 0.005287, KL fake Loss: 0.000102
+Classification Train Epoch: 32 [38400/63553 (60%)]	Loss: 0.015296, KL fake Loss: 0.000050
+Classification Train Epoch: 32 [44800/63553 (70%)]	Loss: 0.000769, KL fake Loss: 0.000033
+Classification Train Epoch: 32 [51200/63553 (80%)]	Loss: 0.007330, KL fake Loss: 0.000357
+Classification Train Epoch: 32 [57600/63553 (91%)]	Loss: 0.055785, KL fake Loss: 0.000143
+
+Test set: Average loss: 0.4297, Accuracy: 20847/22777 (92%)
+
+Classification Train Epoch: 33 [0/63553 (0%)]	Loss: 0.002480, KL fake Loss: 0.000481
+Classification Train Epoch: 33 [6400/63553 (10%)]	Loss: 0.002871, KL fake Loss: 0.000050
+Classification Train Epoch: 33 [12800/63553 (20%)]	Loss: 0.011496, KL fake Loss: 0.000014
+Classification Train Epoch: 33 [19200/63553 (30%)]	Loss: 0.000423, KL fake Loss: 0.000300
+Classification Train Epoch: 33 [25600/63553 (40%)]	Loss: 0.010546, KL fake Loss: 0.000410
+Classification Train Epoch: 33 [32000/63553 (50%)]	Loss: 0.000454, KL fake Loss: 0.000148
+Classification Train Epoch: 33 [38400/63553 (60%)]	Loss: 0.020957, KL fake Loss: 0.001277
+Classification Train Epoch: 33 [44800/63553 (70%)]	Loss: 0.001063, KL fake Loss: 0.000529
+Classification Train Epoch: 33 [51200/63553 (80%)]	Loss: 0.001587, KL fake Loss: 0.000869
+Classification Train Epoch: 33 [57600/63553 (91%)]	Loss: 0.004290, KL fake Loss: 0.000152
+
+Test set: Average loss: 0.5937, Accuracy: 20340/22777 (89%)
+
+Classification Train Epoch: 34 [0/63553 (0%)]	Loss: 0.001722, KL fake Loss: 0.003934
+Classification Train Epoch: 34 [6400/63553 (10%)]	Loss: 0.000431, KL fake Loss: 0.000378
+Classification Train Epoch: 34 [12800/63553 (20%)]	Loss: 0.006390, KL fake Loss: 0.000517
+Classification Train Epoch: 34 [19200/63553 (30%)]	Loss: 0.092886, KL fake Loss: 0.001301
+Classification Train Epoch: 34 [25600/63553 (40%)]	Loss: 0.000496, KL fake Loss: 0.000832
+Classification Train Epoch: 34 [32000/63553 (50%)]	Loss: 0.001518, KL fake Loss: 0.000341
+Classification Train Epoch: 34 [38400/63553 (60%)]	Loss: 0.020859, KL fake Loss: 0.000238
+Classification Train Epoch: 34 [44800/63553 (70%)]	Loss: 0.045001, KL fake Loss: 0.000386
+Classification Train Epoch: 34 [51200/63553 (80%)]	Loss: 0.014801, KL fake Loss: 0.001155
+Classification Train Epoch: 34 [57600/63553 (91%)]	Loss: 0.003348, KL fake Loss: 0.001061
+
+Test set: Average loss: 0.7349, Accuracy: 19615/22777 (86%)
+
+Classification Train Epoch: 35 [0/63553 (0%)]	Loss: 0.001443, KL fake Loss: 0.002773
+Classification Train Epoch: 35 [6400/63553 (10%)]	Loss: 0.006317, KL fake Loss: 0.000892
+Classification Train Epoch: 35 [12800/63553 (20%)]	Loss: 0.004392, KL fake Loss: 0.000671
+ 35%|███▌      | 35/100 [2:30:33<4:39:33, 258.05s/it] 36%|███▌      | 36/100 [2:34:51<4:35:15, 258.05s/it] 37%|███▋      | 37/100 [2:39:09<4:30:57, 258.05s/it] 38%|███▊      | 38/100 [2:43:28<4:26:39, 258.06s/it] 39%|███▉      | 39/100 [2:47:46<4:22:21, 258.06s/it] 40%|████      | 40/100 [2:52:04<4:18:04, 258.07s/it] 41%|████      | 41/100 [2:56:22<4:13:45, 258.06s/it] 42%|████▏     | 42/100 [3:00:40<4:09:27, 258.06s/it]Classification Train Epoch: 35 [19200/63553 (30%)]	Loss: 0.030004, KL fake Loss: 0.000186
+Classification Train Epoch: 35 [25600/63553 (40%)]	Loss: 0.019763, KL fake Loss: 0.001719
+Classification Train Epoch: 35 [32000/63553 (50%)]	Loss: 0.000773, KL fake Loss: 0.002815
+Classification Train Epoch: 35 [38400/63553 (60%)]	Loss: 0.007027, KL fake Loss: 0.000550
+Classification Train Epoch: 35 [44800/63553 (70%)]	Loss: 0.051250, KL fake Loss: 0.000586
+Classification Train Epoch: 35 [51200/63553 (80%)]	Loss: 0.016215, KL fake Loss: 0.008714
+Classification Train Epoch: 35 [57600/63553 (91%)]	Loss: 0.002870, KL fake Loss: 0.004339
+
+Test set: Average loss: 0.5322, Accuracy: 20485/22777 (90%)
+
+Classification Train Epoch: 36 [0/63553 (0%)]	Loss: 0.001899, KL fake Loss: 0.099234
+Classification Train Epoch: 36 [6400/63553 (10%)]	Loss: 0.019122, KL fake Loss: 0.000451
+Classification Train Epoch: 36 [12800/63553 (20%)]	Loss: 0.032175, KL fake Loss: 0.001036
+Classification Train Epoch: 36 [19200/63553 (30%)]	Loss: 0.006349, KL fake Loss: 0.007600
+Classification Train Epoch: 36 [25600/63553 (40%)]	Loss: 0.001841, KL fake Loss: 0.002204
+Classification Train Epoch: 36 [32000/63553 (50%)]	Loss: 0.009282, KL fake Loss: 0.000291
+Classification Train Epoch: 36 [38400/63553 (60%)]	Loss: 0.035169, KL fake Loss: 0.011676
+Classification Train Epoch: 36 [44800/63553 (70%)]	Loss: 0.034882, KL fake Loss: 0.000601
+Classification Train Epoch: 36 [51200/63553 (80%)]	Loss: 0.000755, KL fake Loss: 0.001837
+Classification Train Epoch: 36 [57600/63553 (91%)]	Loss: 0.006399, KL fake Loss: 0.002752
+
+Test set: Average loss: 0.5829, Accuracy: 20219/22777 (89%)
+
+Classification Train Epoch: 37 [0/63553 (0%)]	Loss: 0.000482, KL fake Loss: 0.123334
+Classification Train Epoch: 37 [6400/63553 (10%)]	Loss: 0.000290, KL fake Loss: 0.000626
+Classification Train Epoch: 37 [12800/63553 (20%)]	Loss: 0.000730, KL fake Loss: 0.010383
+Classification Train Epoch: 37 [19200/63553 (30%)]	Loss: 0.005685, KL fake Loss: 0.001153
+Classification Train Epoch: 37 [25600/63553 (40%)]	Loss: 0.001039, KL fake Loss: 0.001110
+Classification Train Epoch: 37 [32000/63553 (50%)]	Loss: 0.030247, KL fake Loss: 0.000876
+Classification Train Epoch: 37 [38400/63553 (60%)]	Loss: 0.000869, KL fake Loss: 0.001071
+Classification Train Epoch: 37 [44800/63553 (70%)]	Loss: 0.001123, KL fake Loss: 0.000121
+Classification Train Epoch: 37 [51200/63553 (80%)]	Loss: 0.017701, KL fake Loss: 0.000258
+Classification Train Epoch: 37 [57600/63553 (91%)]	Loss: 0.007657, KL fake Loss: 0.000252
+
+Test set: Average loss: 0.7056, Accuracy: 20069/22777 (88%)
+
+Classification Train Epoch: 38 [0/63553 (0%)]	Loss: 0.001958, KL fake Loss: 0.066768
+Classification Train Epoch: 38 [6400/63553 (10%)]	Loss: 0.016119, KL fake Loss: 0.001125
+Classification Train Epoch: 38 [12800/63553 (20%)]	Loss: 0.015300, KL fake Loss: 0.000523
+Classification Train Epoch: 38 [19200/63553 (30%)]	Loss: 0.067679, KL fake Loss: 0.000510
+Classification Train Epoch: 38 [25600/63553 (40%)]	Loss: 0.003950, KL fake Loss: 0.000081
+Classification Train Epoch: 38 [32000/63553 (50%)]	Loss: 0.011619, KL fake Loss: 0.004755
+Classification Train Epoch: 38 [38400/63553 (60%)]	Loss: 0.001793, KL fake Loss: 0.000439
+Classification Train Epoch: 38 [44800/63553 (70%)]	Loss: 0.010504, KL fake Loss: 0.011859
+Classification Train Epoch: 38 [51200/63553 (80%)]	Loss: 0.000755, KL fake Loss: 0.000541
+Classification Train Epoch: 38 [57600/63553 (91%)]	Loss: 0.089704, KL fake Loss: 0.019925
+
+Test set: Average loss: 0.7711, Accuracy: 19527/22777 (86%)
+
+Classification Train Epoch: 39 [0/63553 (0%)]	Loss: 0.006689, KL fake Loss: 0.000279
+Classification Train Epoch: 39 [6400/63553 (10%)]	Loss: 0.003347, KL fake Loss: 0.001397
+Classification Train Epoch: 39 [12800/63553 (20%)]	Loss: 0.005460, KL fake Loss: 0.008336
+Classification Train Epoch: 39 [19200/63553 (30%)]	Loss: 0.012984, KL fake Loss: 0.001496
+Classification Train Epoch: 39 [25600/63553 (40%)]	Loss: 0.000976, KL fake Loss: 0.012797
+Classification Train Epoch: 39 [32000/63553 (50%)]	Loss: 0.025629, KL fake Loss: 0.011915
+Classification Train Epoch: 39 [38400/63553 (60%)]	Loss: 0.041275, KL fake Loss: 0.000224
+Classification Train Epoch: 39 [44800/63553 (70%)]	Loss: 0.004826, KL fake Loss: 0.000302
+Classification Train Epoch: 39 [51200/63553 (80%)]	Loss: 0.001309, KL fake Loss: 0.000492
+Classification Train Epoch: 39 [57600/63553 (91%)]	Loss: 0.000755, KL fake Loss: 0.000110
+
+Test set: Average loss: 0.6260, Accuracy: 19905/22777 (87%)
+
+Classification Train Epoch: 40 [0/63553 (0%)]	Loss: 0.008049, KL fake Loss: 0.003111
+Classification Train Epoch: 40 [6400/63553 (10%)]	Loss: 0.006516, KL fake Loss: 0.027808
+Classification Train Epoch: 40 [12800/63553 (20%)]	Loss: 0.000675, KL fake Loss: 0.001501
+Classification Train Epoch: 40 [19200/63553 (30%)]	Loss: 0.000641, KL fake Loss: 0.004406
+Classification Train Epoch: 40 [25600/63553 (40%)]	Loss: 0.006400, KL fake Loss: 0.014716
+Classification Train Epoch: 40 [32000/63553 (50%)]	Loss: 0.003023, KL fake Loss: 0.002815
+Classification Train Epoch: 40 [38400/63553 (60%)]	Loss: 0.008999, KL fake Loss: 0.002652
+Classification Train Epoch: 40 [44800/63553 (70%)]	Loss: 0.089612, KL fake Loss: 0.002503
+Classification Train Epoch: 40 [51200/63553 (80%)]	Loss: 0.001503, KL fake Loss: 0.001631
+Classification Train Epoch: 40 [57600/63553 (91%)]	Loss: 0.004566, KL fake Loss: 0.001725
+
+Test set: Average loss: 0.6454, Accuracy: 20252/22777 (89%)
+
+Classification Train Epoch: 41 [0/63553 (0%)]	Loss: 0.001242, KL fake Loss: 0.002032
+Classification Train Epoch: 41 [6400/63553 (10%)]	Loss: 0.010434, KL fake Loss: 0.043500
+Classification Train Epoch: 41 [12800/63553 (20%)]	Loss: 0.001733, KL fake Loss: 0.000148
+Classification Train Epoch: 41 [19200/63553 (30%)]	Loss: 0.059036, KL fake Loss: 0.000854
+Classification Train Epoch: 41 [25600/63553 (40%)]	Loss: 0.021696, KL fake Loss: 0.004098
+Classification Train Epoch: 41 [32000/63553 (50%)]	Loss: 0.000529, KL fake Loss: 0.002232
+Classification Train Epoch: 41 [38400/63553 (60%)]	Loss: 0.000957, KL fake Loss: 0.001333
+Classification Train Epoch: 41 [44800/63553 (70%)]	Loss: 0.003047, KL fake Loss: 0.000708
+Classification Train Epoch: 41 [51200/63553 (80%)]	Loss: 0.001092, KL fake Loss: 0.001376
+Classification Train Epoch: 41 [57600/63553 (91%)]	Loss: 0.006724, KL fake Loss: 0.001068
+
+Test set: Average loss: 0.5539, Accuracy: 20432/22777 (90%)
+
+Classification Train Epoch: 42 [0/63553 (0%)]	Loss: 0.001278, KL fake Loss: 0.017945
+Classification Train Epoch: 42 [6400/63553 (10%)]	Loss: 0.022355, KL fake Loss: 0.000623
+Classification Train Epoch: 42 [12800/63553 (20%)]	Loss: 0.003674, KL fake Loss: 0.003997
+Classification Train Epoch: 42 [19200/63553 (30%)]	Loss: 0.035717, KL fake Loss: 0.002651
+Classification Train Epoch: 42 [25600/63553 (40%)]	Loss: 0.023542, KL fake Loss: 0.027584
+Classification Train Epoch: 42 [32000/63553 (50%)]	Loss: 0.016935, KL fake Loss: 0.000304
+Classification Train Epoch: 42 [38400/63553 (60%)]	Loss: 0.001512, KL fake Loss: 0.000735
+Classification Train Epoch: 42 [44800/63553 (70%)]	Loss: 0.005052, KL fake Loss: 0.000405
+Classification Train Epoch: 42 [51200/63553 (80%)]	Loss: 0.011669, KL fake Loss: 0.000874
+Classification Train Epoch: 42 [57600/63553 (91%)]	Loss: 0.002429, KL fake Loss: 0.000274
+
+Test set: Average loss: 0.6173, Accuracy: 20234/22777 (89%)
+
+Classification Train Epoch: 43 [0/63553 (0%)]	Loss: 0.000968, KL fake Loss: 0.001268
+Classification Train Epoch: 43 [6400/63553 (10%)]	Loss: 0.007367, KL fake Loss: 0.000605
+Classification Train Epoch: 43 [12800/63553 (20%)]	Loss: 0.000850, KL fake Loss: 0.002802
+Classification Train Epoch: 43 [19200/63553 (30%)]	Loss: 0.000476, KL fake Loss: 0.000353
+Classification Train Epoch: 43 [25600/63553 (40%)]	Loss: 0.005087, KL fake Loss: 0.000095
+Classification Train Epoch: 43 [32000/63553 (50%)]	Loss: 0.000330, KL fake Loss: 0.000424
+Classification Train Epoch: 43 [38400/63553 (60%)]	Loss: 0.003688, KL fake Loss: 0.000626
+Classification Train Epoch: 43 [44800/63553 (70%)]	Loss: 0.000340, KL fake Loss: 0.001689
+Classification Train Epoch: 43 [51200/63553 (80%)]	Loss: 0.022014, KL fake Loss: 0.000903
+ 43%|████▎     | 43/100 [3:04:58<4:05:09, 258.06s/it] 44%|████▍     | 44/100 [3:09:16<4:00:51, 258.07s/it] 45%|████▌     | 45/100 [3:13:34<3:56:33, 258.06s/it] 46%|████▌     | 46/100 [3:17:52<3:52:15, 258.06s/it] 47%|████▋     | 47/100 [3:22:10<3:47:56, 258.05s/it] 48%|████▊     | 48/100 [3:26:28<3:43:38, 258.05s/it] 49%|████▉     | 49/100 [3:30:46<3:39:20, 258.05s/it] 50%|█████     | 50/100 [3:35:04<3:35:02, 258.06s/it] 51%|█████     | 51/100 [3:39:22<3:30:44, 258.05s/it]Classification Train Epoch: 43 [57600/63553 (91%)]	Loss: 0.002530, KL fake Loss: 0.006143
+
+Test set: Average loss: 0.6564, Accuracy: 20106/22777 (88%)
+
+Classification Train Epoch: 44 [0/63553 (0%)]	Loss: 0.003491, KL fake Loss: 0.002580
+Classification Train Epoch: 44 [6400/63553 (10%)]	Loss: 0.001775, KL fake Loss: 0.001951
+Classification Train Epoch: 44 [12800/63553 (20%)]	Loss: 0.013173, KL fake Loss: 0.001530
+Classification Train Epoch: 44 [19200/63553 (30%)]	Loss: 0.002353, KL fake Loss: 0.000561
+Classification Train Epoch: 44 [25600/63553 (40%)]	Loss: 0.012667, KL fake Loss: 0.013726
+Classification Train Epoch: 44 [32000/63553 (50%)]	Loss: 0.017041, KL fake Loss: 0.000128
+Classification Train Epoch: 44 [38400/63553 (60%)]	Loss: 0.002607, KL fake Loss: 0.001816
+Classification Train Epoch: 44 [44800/63553 (70%)]	Loss: 0.008728, KL fake Loss: 0.001251
+Classification Train Epoch: 44 [51200/63553 (80%)]	Loss: 0.002053, KL fake Loss: 0.001651
+Classification Train Epoch: 44 [57600/63553 (91%)]	Loss: 0.000529, KL fake Loss: 0.000368
+
+Test set: Average loss: 0.6186, Accuracy: 20251/22777 (89%)
+
+Classification Train Epoch: 45 [0/63553 (0%)]	Loss: 0.000515, KL fake Loss: 0.003157
+Classification Train Epoch: 45 [6400/63553 (10%)]	Loss: 0.000563, KL fake Loss: 0.000043
+Classification Train Epoch: 45 [12800/63553 (20%)]	Loss: 0.005734, KL fake Loss: 0.000026
+Classification Train Epoch: 45 [19200/63553 (30%)]	Loss: 0.031274, KL fake Loss: 0.000075
+Classification Train Epoch: 45 [25600/63553 (40%)]	Loss: 0.011328, KL fake Loss: 0.000364
+Classification Train Epoch: 45 [32000/63553 (50%)]	Loss: 0.000392, KL fake Loss: 0.000328
+Classification Train Epoch: 45 [38400/63553 (60%)]	Loss: 0.000614, KL fake Loss: 0.000810
+Classification Train Epoch: 45 [44800/63553 (70%)]	Loss: 0.001492, KL fake Loss: 0.000988
+Classification Train Epoch: 45 [51200/63553 (80%)]	Loss: 0.018363, KL fake Loss: 0.000797
+Classification Train Epoch: 45 [57600/63553 (91%)]	Loss: 0.002378, KL fake Loss: 0.003178
+
+Test set: Average loss: 0.6931, Accuracy: 20058/22777 (88%)
+
+Classification Train Epoch: 46 [0/63553 (0%)]	Loss: 0.035649, KL fake Loss: 0.000521
+Classification Train Epoch: 46 [6400/63553 (10%)]	Loss: 0.005329, KL fake Loss: 0.000399
+Classification Train Epoch: 46 [12800/63553 (20%)]	Loss: 0.015925, KL fake Loss: 0.000051
+Classification Train Epoch: 46 [19200/63553 (30%)]	Loss: 0.015626, KL fake Loss: 0.001652
+Classification Train Epoch: 46 [25600/63553 (40%)]	Loss: 0.029123, KL fake Loss: 0.000508
+Classification Train Epoch: 46 [32000/63553 (50%)]	Loss: 0.053658, KL fake Loss: 0.000281
+Classification Train Epoch: 46 [38400/63553 (60%)]	Loss: 0.020654, KL fake Loss: 0.003178
+Classification Train Epoch: 46 [44800/63553 (70%)]	Loss: 0.000195, KL fake Loss: 0.000438
+Classification Train Epoch: 46 [51200/63553 (80%)]	Loss: 0.015762, KL fake Loss: 0.000052
+Classification Train Epoch: 46 [57600/63553 (91%)]	Loss: 0.010509, KL fake Loss: 0.000449
+
+Test set: Average loss: 0.4865, Accuracy: 20893/22777 (92%)
+
+Classification Train Epoch: 47 [0/63553 (0%)]	Loss: 0.000637, KL fake Loss: 0.000684
+Classification Train Epoch: 47 [6400/63553 (10%)]	Loss: 0.045158, KL fake Loss: 0.000071
+Classification Train Epoch: 47 [12800/63553 (20%)]	Loss: 0.000115, KL fake Loss: 0.003112
+Classification Train Epoch: 47 [19200/63553 (30%)]	Loss: 0.002516, KL fake Loss: 0.001614
+Classification Train Epoch: 47 [25600/63553 (40%)]	Loss: 0.003651, KL fake Loss: 0.000274
+Classification Train Epoch: 47 [32000/63553 (50%)]	Loss: 0.002833, KL fake Loss: 0.000055
+Classification Train Epoch: 47 [38400/63553 (60%)]	Loss: 0.003626, KL fake Loss: 0.000063
+Classification Train Epoch: 47 [44800/63553 (70%)]	Loss: 0.001816, KL fake Loss: 0.000464
+Classification Train Epoch: 47 [51200/63553 (80%)]	Loss: 0.000168, KL fake Loss: 0.001314
+Classification Train Epoch: 47 [57600/63553 (91%)]	Loss: 0.000771, KL fake Loss: 0.000643
+
+Test set: Average loss: 0.5707, Accuracy: 20516/22777 (90%)
+
+Classification Train Epoch: 48 [0/63553 (0%)]	Loss: 0.010422, KL fake Loss: 0.000643
+Classification Train Epoch: 48 [6400/63553 (10%)]	Loss: 0.000460, KL fake Loss: 0.000101
+Classification Train Epoch: 48 [12800/63553 (20%)]	Loss: 0.054785, KL fake Loss: 0.000163
+Classification Train Epoch: 48 [19200/63553 (30%)]	Loss: 0.000168, KL fake Loss: 0.000180
+Classification Train Epoch: 48 [25600/63553 (40%)]	Loss: 0.001576, KL fake Loss: 0.000762
+Classification Train Epoch: 48 [32000/63553 (50%)]	Loss: 0.012457, KL fake Loss: 0.000903
+Classification Train Epoch: 48 [38400/63553 (60%)]	Loss: 0.011445, KL fake Loss: 0.005319
+Classification Train Epoch: 48 [44800/63553 (70%)]	Loss: 0.000775, KL fake Loss: 0.000190
+Classification Train Epoch: 48 [51200/63553 (80%)]	Loss: 0.041225, KL fake Loss: 0.000754
+Classification Train Epoch: 48 [57600/63553 (91%)]	Loss: 0.005849, KL fake Loss: 0.000395
+
+Test set: Average loss: 0.6133, Accuracy: 20683/22777 (91%)
+
+Classification Train Epoch: 49 [0/63553 (0%)]	Loss: 0.000366, KL fake Loss: 0.007607
+Classification Train Epoch: 49 [6400/63553 (10%)]	Loss: 0.032318, KL fake Loss: 0.000106
+Classification Train Epoch: 49 [12800/63553 (20%)]	Loss: 0.000589, KL fake Loss: 0.000743
+Classification Train Epoch: 49 [19200/63553 (30%)]	Loss: 0.003484, KL fake Loss: 0.005128
+Classification Train Epoch: 49 [25600/63553 (40%)]	Loss: 0.220599, KL fake Loss: 0.000314
+Classification Train Epoch: 49 [32000/63553 (50%)]	Loss: 0.000828, KL fake Loss: 0.000374
+Classification Train Epoch: 49 [38400/63553 (60%)]	Loss: 0.010868, KL fake Loss: 0.000290
+Classification Train Epoch: 49 [44800/63553 (70%)]	Loss: 0.018027, KL fake Loss: 0.014305
+Classification Train Epoch: 49 [51200/63553 (80%)]	Loss: 0.000955, KL fake Loss: 0.015776
+Classification Train Epoch: 49 [57600/63553 (91%)]	Loss: 0.013299, KL fake Loss: 0.002130
+
+Test set: Average loss: 0.8517, Accuracy: 19475/22777 (86%)
+
+Classification Train Epoch: 50 [0/63553 (0%)]	Loss: 0.003391, KL fake Loss: 0.001941
+Classification Train Epoch: 50 [6400/63553 (10%)]	Loss: 0.004790, KL fake Loss: 0.002490
+Classification Train Epoch: 50 [12800/63553 (20%)]	Loss: 0.000407, KL fake Loss: 0.000083
+Classification Train Epoch: 50 [19200/63553 (30%)]	Loss: 0.000066, KL fake Loss: 0.001319
+Classification Train Epoch: 50 [25600/63553 (40%)]	Loss: 0.017561, KL fake Loss: 0.003087
+Classification Train Epoch: 50 [32000/63553 (50%)]	Loss: 0.001460, KL fake Loss: 0.001245
+Classification Train Epoch: 50 [38400/63553 (60%)]	Loss: 0.000521, KL fake Loss: 0.000062
+Classification Train Epoch: 50 [44800/63553 (70%)]	Loss: 0.001285, KL fake Loss: 0.002156
+Classification Train Epoch: 50 [51200/63553 (80%)]	Loss: 0.041022, KL fake Loss: 0.000489
+Classification Train Epoch: 50 [57600/63553 (91%)]	Loss: 0.002074, KL fake Loss: 0.001480
+
+Test set: Average loss: 0.8420, Accuracy: 19163/22777 (84%)
+
+Classification Train Epoch: 51 [0/63553 (0%)]	Loss: 0.000250, KL fake Loss: 0.031944
+Classification Train Epoch: 51 [6400/63553 (10%)]	Loss: 0.088612, KL fake Loss: 0.000481
+Classification Train Epoch: 51 [12800/63553 (20%)]	Loss: 0.001652, KL fake Loss: 0.000124
+Classification Train Epoch: 51 [19200/63553 (30%)]	Loss: 0.007255, KL fake Loss: 0.001485
+Classification Train Epoch: 51 [25600/63553 (40%)]	Loss: 0.001543, KL fake Loss: 0.000520
+Classification Train Epoch: 51 [32000/63553 (50%)]	Loss: 0.002241, KL fake Loss: 0.000064
+Classification Train Epoch: 51 [38400/63553 (60%)]	Loss: 0.045246, KL fake Loss: 0.000199
+Classification Train Epoch: 51 [44800/63553 (70%)]	Loss: 0.001928, KL fake Loss: 0.000300
+Classification Train Epoch: 51 [51200/63553 (80%)]	Loss: 0.001203, KL fake Loss: 0.000129
+Classification Train Epoch: 51 [57600/63553 (91%)]	Loss: 0.004299, KL fake Loss: 0.000066
+
+Test set: Average loss: 1.2392, Accuracy: 18553/22777 (81%)
+
+Classification Train Epoch: 52 [0/63553 (0%)]	Loss: 0.003006, KL fake Loss: 0.000330
+Classification Train Epoch: 52 [6400/63553 (10%)]	Loss: 0.000188, KL fake Loss: 0.000069
+Classification Train Epoch: 52 [12800/63553 (20%)]	Loss: 0.000548, KL fake Loss: 0.000091
+Classification Train Epoch: 52 [19200/63553 (30%)]	Loss: 0.000062, KL fake Loss: 0.000080
+ 52%|█████▏    | 52/100 [3:43:40<3:26:26, 258.05s/it] 53%|█████▎    | 53/100 [3:47:58<3:22:08, 258.05s/it] 54%|█████▍    | 54/100 [3:52:16<3:17:50, 258.06s/it] 55%|█████▌    | 55/100 [3:56:35<3:13:32, 258.06s/it] 56%|█████▌    | 56/100 [4:00:53<3:09:14, 258.07s/it] 57%|█████▋    | 57/100 [4:05:11<3:04:57, 258.07s/it] 58%|█████▊    | 58/100 [4:09:29<3:00:38, 258.07s/it] 59%|█████▉    | 59/100 [4:13:47<2:56:20, 258.07s/it]Classification Train Epoch: 52 [25600/63553 (40%)]	Loss: 0.000038, KL fake Loss: 0.000146
+Classification Train Epoch: 52 [32000/63553 (50%)]	Loss: 0.000157, KL fake Loss: 0.002678
+Classification Train Epoch: 52 [38400/63553 (60%)]	Loss: 0.001432, KL fake Loss: 0.002063
+Classification Train Epoch: 52 [44800/63553 (70%)]	Loss: 0.000732, KL fake Loss: 0.000307
+Classification Train Epoch: 52 [51200/63553 (80%)]	Loss: 0.023266, KL fake Loss: 0.001315
+Classification Train Epoch: 52 [57600/63553 (91%)]	Loss: 0.009286, KL fake Loss: 0.001335
+
+Test set: Average loss: 0.5712, Accuracy: 20717/22777 (91%)
+
+Classification Train Epoch: 53 [0/63553 (0%)]	Loss: 0.055246, KL fake Loss: 0.002548
+Classification Train Epoch: 53 [6400/63553 (10%)]	Loss: 0.000563, KL fake Loss: 0.000573
+Classification Train Epoch: 53 [12800/63553 (20%)]	Loss: 0.003512, KL fake Loss: 0.000275
+Classification Train Epoch: 53 [19200/63553 (30%)]	Loss: 0.003660, KL fake Loss: 0.000573
+Classification Train Epoch: 53 [25600/63553 (40%)]	Loss: 0.001133, KL fake Loss: 0.003967
+Classification Train Epoch: 53 [32000/63553 (50%)]	Loss: 0.003500, KL fake Loss: 0.000127
+Classification Train Epoch: 53 [38400/63553 (60%)]	Loss: 0.002636, KL fake Loss: 0.004484
+Classification Train Epoch: 53 [44800/63553 (70%)]	Loss: 0.000810, KL fake Loss: 0.002426
+Classification Train Epoch: 53 [51200/63553 (80%)]	Loss: 0.056555, KL fake Loss: 0.002058
+Classification Train Epoch: 53 [57600/63553 (91%)]	Loss: 0.019791, KL fake Loss: 0.000406
+
+Test set: Average loss: 0.8656, Accuracy: 20029/22777 (88%)
+
+Classification Train Epoch: 54 [0/63553 (0%)]	Loss: 0.000916, KL fake Loss: 0.124503
+Classification Train Epoch: 54 [6400/63553 (10%)]	Loss: 0.019964, KL fake Loss: 0.001148
+Classification Train Epoch: 54 [12800/63553 (20%)]	Loss: 0.020641, KL fake Loss: 0.000681
+Classification Train Epoch: 54 [19200/63553 (30%)]	Loss: 0.006055, KL fake Loss: 0.009148
+Classification Train Epoch: 54 [25600/63553 (40%)]	Loss: 0.000074, KL fake Loss: 0.000088
+Classification Train Epoch: 54 [32000/63553 (50%)]	Loss: 0.010382, KL fake Loss: 0.000233
+Classification Train Epoch: 54 [38400/63553 (60%)]	Loss: 0.000942, KL fake Loss: 0.015375
+Classification Train Epoch: 54 [44800/63553 (70%)]	Loss: 0.010726, KL fake Loss: 0.000708
+Classification Train Epoch: 54 [51200/63553 (80%)]	Loss: 0.017739, KL fake Loss: 0.000546
+Classification Train Epoch: 54 [57600/63553 (91%)]	Loss: 0.001685, KL fake Loss: 0.005381
+
+Test set: Average loss: 0.8550, Accuracy: 19128/22777 (84%)
+
+Classification Train Epoch: 55 [0/63553 (0%)]	Loss: 0.028102, KL fake Loss: 0.002735
+Classification Train Epoch: 55 [6400/63553 (10%)]	Loss: 0.002111, KL fake Loss: 0.012040
+Classification Train Epoch: 55 [12800/63553 (20%)]	Loss: 0.003770, KL fake Loss: 0.000392
+Classification Train Epoch: 55 [19200/63553 (30%)]	Loss: 0.004831, KL fake Loss: 0.000218
+Classification Train Epoch: 55 [25600/63553 (40%)]	Loss: 0.001902, KL fake Loss: 0.121658
+Classification Train Epoch: 55 [32000/63553 (50%)]	Loss: 0.000306, KL fake Loss: 0.006443
+Classification Train Epoch: 55 [38400/63553 (60%)]	Loss: 0.003127, KL fake Loss: 0.001099
+Classification Train Epoch: 55 [44800/63553 (70%)]	Loss: 0.078004, KL fake Loss: 0.004389
+Classification Train Epoch: 55 [51200/63553 (80%)]	Loss: 0.000972, KL fake Loss: 0.002941
+Classification Train Epoch: 55 [57600/63553 (91%)]	Loss: 0.047658, KL fake Loss: 0.258707
+
+Test set: Average loss: 0.9805, Accuracy: 18893/22777 (83%)
+
+Classification Train Epoch: 56 [0/63553 (0%)]	Loss: 0.000146, KL fake Loss: 0.002955
+Classification Train Epoch: 56 [6400/63553 (10%)]	Loss: 0.008077, KL fake Loss: 0.006966
+Classification Train Epoch: 56 [12800/63553 (20%)]	Loss: 0.003238, KL fake Loss: 0.002950
+Classification Train Epoch: 56 [19200/63553 (30%)]	Loss: 0.025581, KL fake Loss: 0.015785
+Classification Train Epoch: 56 [25600/63553 (40%)]	Loss: 0.000103, KL fake Loss: 0.003229
+Classification Train Epoch: 56 [32000/63553 (50%)]	Loss: 0.000480, KL fake Loss: 0.000858
+Classification Train Epoch: 56 [38400/63553 (60%)]	Loss: 0.000047, KL fake Loss: 0.000291
+Classification Train Epoch: 56 [44800/63553 (70%)]	Loss: 0.001051, KL fake Loss: 0.001061
+Classification Train Epoch: 56 [51200/63553 (80%)]	Loss: 0.081703, KL fake Loss: 0.003270
+Classification Train Epoch: 56 [57600/63553 (91%)]	Loss: 0.016464, KL fake Loss: 0.004607
+
+Test set: Average loss: 0.7024, Accuracy: 19807/22777 (87%)
+
+Classification Train Epoch: 57 [0/63553 (0%)]	Loss: 0.005266, KL fake Loss: 0.004553
+Classification Train Epoch: 57 [6400/63553 (10%)]	Loss: 0.000392, KL fake Loss: 0.000211
+Classification Train Epoch: 57 [12800/63553 (20%)]	Loss: 0.000547, KL fake Loss: 0.001778
+Classification Train Epoch: 57 [19200/63553 (30%)]	Loss: 0.010626, KL fake Loss: 0.000497
+Classification Train Epoch: 57 [25600/63553 (40%)]	Loss: 0.002480, KL fake Loss: 0.000472
+Classification Train Epoch: 57 [32000/63553 (50%)]	Loss: 0.003704, KL fake Loss: 0.000917
+Classification Train Epoch: 57 [38400/63553 (60%)]	Loss: 0.044508, KL fake Loss: 0.000743
+Classification Train Epoch: 57 [44800/63553 (70%)]	Loss: 0.002522, KL fake Loss: 0.002069
+Classification Train Epoch: 57 [51200/63553 (80%)]	Loss: 0.000752, KL fake Loss: 0.014325
+Classification Train Epoch: 57 [57600/63553 (91%)]	Loss: 0.000730, KL fake Loss: 0.010956
+
+Test set: Average loss: 1.3755, Accuracy: 18114/22777 (80%)
+
+Classification Train Epoch: 58 [0/63553 (0%)]	Loss: 0.000155, KL fake Loss: 0.001263
+Classification Train Epoch: 58 [6400/63553 (10%)]	Loss: 0.005091, KL fake Loss: 0.004436
+Classification Train Epoch: 58 [12800/63553 (20%)]	Loss: 0.009261, KL fake Loss: 0.000579
+Classification Train Epoch: 58 [19200/63553 (30%)]	Loss: 0.000190, KL fake Loss: 0.001215
+Classification Train Epoch: 58 [25600/63553 (40%)]	Loss: 0.007586, KL fake Loss: 0.000216
+Classification Train Epoch: 58 [32000/63553 (50%)]	Loss: 0.002691, KL fake Loss: 0.002312
+Classification Train Epoch: 58 [38400/63553 (60%)]	Loss: 0.007569, KL fake Loss: 0.002185
+Classification Train Epoch: 58 [44800/63553 (70%)]	Loss: 0.012991, KL fake Loss: 0.000707
+Classification Train Epoch: 58 [51200/63553 (80%)]	Loss: 0.003454, KL fake Loss: 0.006855
+Classification Train Epoch: 58 [57600/63553 (91%)]	Loss: 0.003582, KL fake Loss: 0.001084
+
+Test set: Average loss: 0.7807, Accuracy: 19998/22777 (88%)
+
+Classification Train Epoch: 59 [0/63553 (0%)]	Loss: 0.000867, KL fake Loss: 0.003842
+Classification Train Epoch: 59 [6400/63553 (10%)]	Loss: 0.000173, KL fake Loss: 0.032446
+Classification Train Epoch: 59 [12800/63553 (20%)]	Loss: 0.008139, KL fake Loss: 0.002948
+Classification Train Epoch: 59 [19200/63553 (30%)]	Loss: 0.050638, KL fake Loss: 0.000077
+Classification Train Epoch: 59 [25600/63553 (40%)]	Loss: 0.000386, KL fake Loss: 0.000242
+Classification Train Epoch: 59 [32000/63553 (50%)]	Loss: 0.046091, KL fake Loss: 0.002663
+Classification Train Epoch: 59 [38400/63553 (60%)]	Loss: 0.000158, KL fake Loss: 0.001511
+Classification Train Epoch: 59 [44800/63553 (70%)]	Loss: 0.000863, KL fake Loss: 0.000061
+Classification Train Epoch: 59 [51200/63553 (80%)]	Loss: 0.015246, KL fake Loss: 0.000388
+Classification Train Epoch: 59 [57600/63553 (91%)]	Loss: 0.004476, KL fake Loss: 0.000144
+
+Test set: Average loss: 0.8860, Accuracy: 19468/22777 (85%)
+
+Classification Train Epoch: 60 [0/63553 (0%)]	Loss: 0.001577, KL fake Loss: 0.009153
+Classification Train Epoch: 60 [6400/63553 (10%)]	Loss: 0.000123, KL fake Loss: 0.042395
+Classification Train Epoch: 60 [12800/63553 (20%)]	Loss: 0.013611, KL fake Loss: 0.000416
+Classification Train Epoch: 60 [19200/63553 (30%)]	Loss: 0.006946, KL fake Loss: 0.001083
+Classification Train Epoch: 60 [25600/63553 (40%)]	Loss: 0.001188, KL fake Loss: 0.003955
+Classification Train Epoch: 60 [32000/63553 (50%)]	Loss: 0.010418, KL fake Loss: 0.001073
+Classification Train Epoch: 60 [38400/63553 (60%)]	Loss: 0.000470, KL fake Loss: 0.000027
+Classification Train Epoch: 60 [44800/63553 (70%)]	Loss: 0.002658, KL fake Loss: 0.009746
+Classification Train Epoch: 60 [51200/63553 (80%)]	Loss: 0.000452, KL fake Loss: 0.002664
+Classification Train Epoch: 60 [57600/63553 (91%)]	Loss: 0.000162, KL fake Loss: 0.003522
+ 60%|██████    | 60/100 [4:18:05<2:52:03, 258.10s/it] 61%|██████    | 61/100 [4:22:23<2:47:45, 258.09s/it] 62%|██████▏   | 62/100 [4:26:41<2:43:27, 258.09s/it] 63%|██████▎   | 63/100 [4:30:59<2:39:09, 258.09s/it] 64%|██████▍   | 64/100 [4:35:17<2:34:51, 258.09s/it] 65%|██████▌   | 65/100 [4:39:35<2:30:32, 258.08s/it] 66%|██████▌   | 66/100 [4:43:53<2:26:14, 258.07s/it] 67%|██████▋   | 67/100 [4:48:11<2:21:55, 258.06s/it] 68%|██████▊   | 68/100 [4:52:30<2:17:37, 258.06s/it]
+Test set: Average loss: 1.0021, Accuracy: 18741/22777 (82%)
+
+Classification Train Epoch: 61 [0/63553 (0%)]	Loss: 0.049355, KL fake Loss: 0.000562
+Classification Train Epoch: 61 [6400/63553 (10%)]	Loss: 0.004221, KL fake Loss: 0.000070
+Classification Train Epoch: 61 [12800/63553 (20%)]	Loss: 0.000129, KL fake Loss: 0.000067
+Classification Train Epoch: 61 [19200/63553 (30%)]	Loss: 0.000795, KL fake Loss: 0.000111
+Classification Train Epoch: 61 [25600/63553 (40%)]	Loss: 0.082889, KL fake Loss: 0.000049
+Classification Train Epoch: 61 [32000/63553 (50%)]	Loss: 0.000453, KL fake Loss: 0.000091
+Classification Train Epoch: 61 [38400/63553 (60%)]	Loss: 0.000057, KL fake Loss: 0.000050
+Classification Train Epoch: 61 [44800/63553 (70%)]	Loss: 0.002464, KL fake Loss: 0.000038
+Classification Train Epoch: 61 [51200/63553 (80%)]	Loss: 0.000626, KL fake Loss: 0.000040
+Classification Train Epoch: 61 [57600/63553 (91%)]	Loss: 0.000062, KL fake Loss: 0.000024
+
+Test set: Average loss: 0.6516, Accuracy: 20017/22777 (88%)
+
+Classification Train Epoch: 62 [0/63553 (0%)]	Loss: 0.001505, KL fake Loss: 0.000034
+Classification Train Epoch: 62 [6400/63553 (10%)]	Loss: 0.000585, KL fake Loss: 0.000004
+Classification Train Epoch: 62 [12800/63553 (20%)]	Loss: 0.000494, KL fake Loss: 0.000021
+Classification Train Epoch: 62 [19200/63553 (30%)]	Loss: 0.000462, KL fake Loss: 0.000029
+Classification Train Epoch: 62 [25600/63553 (40%)]	Loss: 0.000278, KL fake Loss: 0.000003
+Classification Train Epoch: 62 [32000/63553 (50%)]	Loss: 0.000546, KL fake Loss: 0.000026
+Classification Train Epoch: 62 [38400/63553 (60%)]	Loss: 0.000160, KL fake Loss: 0.000002
+Classification Train Epoch: 62 [44800/63553 (70%)]	Loss: 0.000401, KL fake Loss: 0.000018
+Classification Train Epoch: 62 [51200/63553 (80%)]	Loss: 0.000043, KL fake Loss: 0.000112
+Classification Train Epoch: 62 [57600/63553 (91%)]	Loss: 0.000028, KL fake Loss: 0.000044
+
+Test set: Average loss: 0.7193, Accuracy: 19775/22777 (87%)
+
+Classification Train Epoch: 63 [0/63553 (0%)]	Loss: 0.000044, KL fake Loss: 0.000003
+Classification Train Epoch: 63 [6400/63553 (10%)]	Loss: 0.000603, KL fake Loss: 0.000004
+Classification Train Epoch: 63 [12800/63553 (20%)]	Loss: 0.000256, KL fake Loss: 0.000018
+Classification Train Epoch: 63 [19200/63553 (30%)]	Loss: 0.000608, KL fake Loss: 0.000299
+Classification Train Epoch: 63 [25600/63553 (40%)]	Loss: 0.000014, KL fake Loss: 0.000002
+Classification Train Epoch: 63 [32000/63553 (50%)]	Loss: 0.000229, KL fake Loss: 0.000018
+Classification Train Epoch: 63 [38400/63553 (60%)]	Loss: 0.000096, KL fake Loss: 0.000004
+Classification Train Epoch: 63 [44800/63553 (70%)]	Loss: 0.000362, KL fake Loss: 0.000006
+Classification Train Epoch: 63 [51200/63553 (80%)]	Loss: 0.000061, KL fake Loss: 0.000008
+Classification Train Epoch: 63 [57600/63553 (91%)]	Loss: 0.000139, KL fake Loss: 0.000005
+
+Test set: Average loss: 0.5323, Accuracy: 20467/22777 (90%)
+
+Classification Train Epoch: 64 [0/63553 (0%)]	Loss: 0.000382, KL fake Loss: 0.000005
+Classification Train Epoch: 64 [6400/63553 (10%)]	Loss: 0.000307, KL fake Loss: 0.000001
+Classification Train Epoch: 64 [12800/63553 (20%)]	Loss: 0.000208, KL fake Loss: 0.000001
+Classification Train Epoch: 64 [19200/63553 (30%)]	Loss: 0.000166, KL fake Loss: 0.000011
+Classification Train Epoch: 64 [25600/63553 (40%)]	Loss: 0.000502, KL fake Loss: 0.000002
+Classification Train Epoch: 64 [32000/63553 (50%)]	Loss: 0.000062, KL fake Loss: 0.000001
+Classification Train Epoch: 64 [38400/63553 (60%)]	Loss: 0.001054, KL fake Loss: 0.000001
+Classification Train Epoch: 64 [44800/63553 (70%)]	Loss: 0.000232, KL fake Loss: 0.000001
+Classification Train Epoch: 64 [51200/63553 (80%)]	Loss: 0.000550, KL fake Loss: 0.000002
+Classification Train Epoch: 64 [57600/63553 (91%)]	Loss: 0.000189, KL fake Loss: 0.000002
+
+Test set: Average loss: 0.5514, Accuracy: 20409/22777 (90%)
+
+Classification Train Epoch: 65 [0/63553 (0%)]	Loss: 0.000088, KL fake Loss: 0.000002
+Classification Train Epoch: 65 [6400/63553 (10%)]	Loss: 0.000063, KL fake Loss: 0.000001
+Classification Train Epoch: 65 [12800/63553 (20%)]	Loss: 0.000087, KL fake Loss: 0.000003
+Classification Train Epoch: 65 [19200/63553 (30%)]	Loss: 0.000775, KL fake Loss: 0.000002
+Classification Train Epoch: 65 [25600/63553 (40%)]	Loss: 0.001087, KL fake Loss: 0.000001
+Classification Train Epoch: 65 [32000/63553 (50%)]	Loss: 0.000326, KL fake Loss: 0.000002
+Classification Train Epoch: 65 [38400/63553 (60%)]	Loss: 0.000168, KL fake Loss: 0.000003
+Classification Train Epoch: 65 [44800/63553 (70%)]	Loss: 0.000068, KL fake Loss: 0.000003
+Classification Train Epoch: 65 [51200/63553 (80%)]	Loss: 0.000816, KL fake Loss: 0.000001
+Classification Train Epoch: 65 [57600/63553 (91%)]	Loss: 0.000347, KL fake Loss: 0.000002
+
+Test set: Average loss: 0.5573, Accuracy: 20427/22777 (90%)
+
+Classification Train Epoch: 66 [0/63553 (0%)]	Loss: 0.000035, KL fake Loss: 0.000002
+Classification Train Epoch: 66 [6400/63553 (10%)]	Loss: 0.000031, KL fake Loss: 0.000001
+Classification Train Epoch: 66 [12800/63553 (20%)]	Loss: 0.000015, KL fake Loss: 0.000000
+Classification Train Epoch: 66 [19200/63553 (30%)]	Loss: 0.000519, KL fake Loss: 0.000007
+Classification Train Epoch: 66 [25600/63553 (40%)]	Loss: 0.000035, KL fake Loss: 0.000001
+Classification Train Epoch: 66 [32000/63553 (50%)]	Loss: 0.000563, KL fake Loss: 0.000000
+Classification Train Epoch: 66 [38400/63553 (60%)]	Loss: 0.000024, KL fake Loss: 0.000002
+Classification Train Epoch: 66 [44800/63553 (70%)]	Loss: 0.000038, KL fake Loss: 0.000089
+Classification Train Epoch: 66 [51200/63553 (80%)]	Loss: 0.000080, KL fake Loss: 0.000001
+Classification Train Epoch: 66 [57600/63553 (91%)]	Loss: 0.000041, KL fake Loss: 0.000003
+
+Test set: Average loss: 0.6225, Accuracy: 20183/22777 (89%)
+
+Classification Train Epoch: 67 [0/63553 (0%)]	Loss: 0.000069, KL fake Loss: 0.000007
+Classification Train Epoch: 67 [6400/63553 (10%)]	Loss: 0.000107, KL fake Loss: 0.000003
+Classification Train Epoch: 67 [12800/63553 (20%)]	Loss: 0.000382, KL fake Loss: 0.000001
+Classification Train Epoch: 67 [19200/63553 (30%)]	Loss: 0.001266, KL fake Loss: 0.000002
+Classification Train Epoch: 67 [25600/63553 (40%)]	Loss: 0.000045, KL fake Loss: 0.000037
+Classification Train Epoch: 67 [32000/63553 (50%)]	Loss: 0.000036, KL fake Loss: 0.000030
+Classification Train Epoch: 67 [38400/63553 (60%)]	Loss: 0.000559, KL fake Loss: 0.000002
+Classification Train Epoch: 67 [44800/63553 (70%)]	Loss: 0.000014, KL fake Loss: 0.000001
+Classification Train Epoch: 67 [51200/63553 (80%)]	Loss: 0.000046, KL fake Loss: 0.000005
+Classification Train Epoch: 67 [57600/63553 (91%)]	Loss: 0.000035, KL fake Loss: 0.000008
+
+Test set: Average loss: 0.6058, Accuracy: 20375/22777 (89%)
+
+Classification Train Epoch: 68 [0/63553 (0%)]	Loss: 0.000056, KL fake Loss: 0.000027
+Classification Train Epoch: 68 [6400/63553 (10%)]	Loss: 0.000492, KL fake Loss: 0.000005
+Classification Train Epoch: 68 [12800/63553 (20%)]	Loss: 0.000072, KL fake Loss: 0.000002
+Classification Train Epoch: 68 [19200/63553 (30%)]	Loss: 0.000003, KL fake Loss: 0.000004
+Classification Train Epoch: 68 [25600/63553 (40%)]	Loss: 0.000074, KL fake Loss: 0.000001
+Classification Train Epoch: 68 [32000/63553 (50%)]	Loss: 0.000018, KL fake Loss: 0.000001
+Classification Train Epoch: 68 [38400/63553 (60%)]	Loss: 0.000624, KL fake Loss: 0.000011
+Classification Train Epoch: 68 [44800/63553 (70%)]	Loss: 0.000101, KL fake Loss: 0.000002
+Classification Train Epoch: 68 [51200/63553 (80%)]	Loss: 0.000012, KL fake Loss: 0.000001
+Classification Train Epoch: 68 [57600/63553 (91%)]	Loss: 0.000513, KL fake Loss: 0.000010
+
+Test set: Average loss: 0.5129, Accuracy: 20762/22777 (91%)
+
+Classification Train Epoch: 69 [0/63553 (0%)]	Loss: 0.000379, KL fake Loss: 0.000182
+Classification Train Epoch: 69 [6400/63553 (10%)]	Loss: 0.000547, KL fake Loss: 0.000002
+Classification Train Epoch: 69 [12800/63553 (20%)]	Loss: 0.000046, KL fake Loss: 0.000002
+Classification Train Epoch: 69 [19200/63553 (30%)]	Loss: 0.000033, KL fake Loss: 0.000035
+Classification Train Epoch: 69 [25600/63553 (40%)]	Loss: 0.000561, KL fake Loss: 0.000436
+ 69%|██████▉   | 69/100 [4:56:48<2:13:20, 258.07s/it] 70%|███████   | 70/100 [5:01:06<2:09:02, 258.07s/it] 71%|███████   | 71/100 [5:05:24<2:04:44, 258.07s/it] 72%|███████▏  | 72/100 [5:09:42<2:00:25, 258.06s/it] 73%|███████▎  | 73/100 [5:14:00<1:56:07, 258.06s/it] 74%|███████▍  | 74/100 [5:18:18<1:51:49, 258.06s/it] 75%|███████▌  | 75/100 [5:22:36<1:47:31, 258.06s/it] 76%|███████▌  | 76/100 [5:26:54<1:43:13, 258.06s/it] 77%|███████▋  | 77/100 [5:31:12<1:38:55, 258.05s/it]Classification Train Epoch: 69 [32000/63553 (50%)]	Loss: 0.000033, KL fake Loss: 0.000005
+Classification Train Epoch: 69 [38400/63553 (60%)]	Loss: 0.000027, KL fake Loss: 0.000011
+Classification Train Epoch: 69 [44800/63553 (70%)]	Loss: 0.000110, KL fake Loss: 0.000036
+Classification Train Epoch: 69 [51200/63553 (80%)]	Loss: 0.000365, KL fake Loss: 0.002630
+Classification Train Epoch: 69 [57600/63553 (91%)]	Loss: 0.000193, KL fake Loss: 0.010798
+
+Test set: Average loss: 0.6290, Accuracy: 20616/22777 (91%)
+
+Classification Train Epoch: 70 [0/63553 (0%)]	Loss: 0.000395, KL fake Loss: 0.023721
+Classification Train Epoch: 70 [6400/63553 (10%)]	Loss: 0.000082, KL fake Loss: 0.000299
+Classification Train Epoch: 70 [12800/63553 (20%)]	Loss: 0.000064, KL fake Loss: 0.000002
+Classification Train Epoch: 70 [19200/63553 (30%)]	Loss: 0.001027, KL fake Loss: 0.000005
+Classification Train Epoch: 70 [25600/63553 (40%)]	Loss: 0.000005, KL fake Loss: 0.000004
+Classification Train Epoch: 70 [32000/63553 (50%)]	Loss: 0.000517, KL fake Loss: 0.000002
+Classification Train Epoch: 70 [38400/63553 (60%)]	Loss: 0.000273, KL fake Loss: 0.000013
+Classification Train Epoch: 70 [44800/63553 (70%)]	Loss: 0.000011, KL fake Loss: 0.000118
+Classification Train Epoch: 70 [51200/63553 (80%)]	Loss: 0.000168, KL fake Loss: 0.000070
+Classification Train Epoch: 70 [57600/63553 (91%)]	Loss: 0.000064, KL fake Loss: 0.000030
+
+Test set: Average loss: 0.7066, Accuracy: 20408/22777 (90%)
+
+Classification Train Epoch: 71 [0/63553 (0%)]	Loss: 0.000004, KL fake Loss: 0.000276
+Classification Train Epoch: 71 [6400/63553 (10%)]	Loss: 0.000195, KL fake Loss: 0.000003
+Classification Train Epoch: 71 [12800/63553 (20%)]	Loss: 0.000073, KL fake Loss: 0.000001
+Classification Train Epoch: 71 [19200/63553 (30%)]	Loss: 0.000044, KL fake Loss: 0.000001
+Classification Train Epoch: 71 [25600/63553 (40%)]	Loss: 0.000052, KL fake Loss: 0.000001
+Classification Train Epoch: 71 [32000/63553 (50%)]	Loss: 0.000016, KL fake Loss: 0.000001
+Classification Train Epoch: 71 [38400/63553 (60%)]	Loss: 0.000002, KL fake Loss: 0.000001
+Classification Train Epoch: 71 [44800/63553 (70%)]	Loss: 0.000053, KL fake Loss: 0.000001
+Classification Train Epoch: 71 [51200/63553 (80%)]	Loss: 0.000635, KL fake Loss: 0.000001
+Classification Train Epoch: 71 [57600/63553 (91%)]	Loss: 0.000035, KL fake Loss: 0.000004
+
+Test set: Average loss: 0.6764, Accuracy: 20579/22777 (90%)
+
+Classification Train Epoch: 72 [0/63553 (0%)]	Loss: 0.000048, KL fake Loss: 0.000001
+Classification Train Epoch: 72 [6400/63553 (10%)]	Loss: 0.000027, KL fake Loss: 0.000002
+Classification Train Epoch: 72 [12800/63553 (20%)]	Loss: 0.000024, KL fake Loss: 0.000001
+Classification Train Epoch: 72 [19200/63553 (30%)]	Loss: 0.000005, KL fake Loss: 0.000003
+Classification Train Epoch: 72 [25600/63553 (40%)]	Loss: 0.000012, KL fake Loss: 0.000001
+Classification Train Epoch: 72 [32000/63553 (50%)]	Loss: 0.000092, KL fake Loss: 0.000000
+Classification Train Epoch: 72 [38400/63553 (60%)]	Loss: 0.000105, KL fake Loss: 0.000195
+Classification Train Epoch: 72 [44800/63553 (70%)]	Loss: 0.000011, KL fake Loss: 0.000001
+Classification Train Epoch: 72 [51200/63553 (80%)]	Loss: 0.000009, KL fake Loss: 0.005255
+Classification Train Epoch: 72 [57600/63553 (91%)]	Loss: 0.000181, KL fake Loss: 0.004957
+
+Test set: Average loss: 0.7503, Accuracy: 20314/22777 (89%)
+
+Classification Train Epoch: 73 [0/63553 (0%)]	Loss: 0.000172, KL fake Loss: 0.000008
+Classification Train Epoch: 73 [6400/63553 (10%)]	Loss: 0.000039, KL fake Loss: 0.000002
+Classification Train Epoch: 73 [12800/63553 (20%)]	Loss: 0.000009, KL fake Loss: 0.000001
+Classification Train Epoch: 73 [19200/63553 (30%)]	Loss: 0.000398, KL fake Loss: 0.000001
+Classification Train Epoch: 73 [25600/63553 (40%)]	Loss: 0.000019, KL fake Loss: 0.000002
+Classification Train Epoch: 73 [32000/63553 (50%)]	Loss: 0.000015, KL fake Loss: 0.000001
+Classification Train Epoch: 73 [38400/63553 (60%)]	Loss: 0.000015, KL fake Loss: 0.000001
+Classification Train Epoch: 73 [44800/63553 (70%)]	Loss: 0.000055, KL fake Loss: 0.000014
+Classification Train Epoch: 73 [51200/63553 (80%)]	Loss: 0.000032, KL fake Loss: 0.000009
+Classification Train Epoch: 73 [57600/63553 (91%)]	Loss: 0.000046, KL fake Loss: 0.000001
+
+Test set: Average loss: 0.6940, Accuracy: 20567/22777 (90%)
+
+Classification Train Epoch: 74 [0/63553 (0%)]	Loss: 0.000024, KL fake Loss: 0.000002
+Classification Train Epoch: 74 [6400/63553 (10%)]	Loss: 0.000007, KL fake Loss: 0.000076
+Classification Train Epoch: 74 [12800/63553 (20%)]	Loss: 0.000030, KL fake Loss: 0.027149
+Classification Train Epoch: 74 [19200/63553 (30%)]	Loss: 0.000070, KL fake Loss: 0.000087
+Classification Train Epoch: 74 [25600/63553 (40%)]	Loss: 0.000015, KL fake Loss: 0.001913
+Classification Train Epoch: 74 [32000/63553 (50%)]	Loss: 0.000006, KL fake Loss: 0.003661
+Classification Train Epoch: 74 [38400/63553 (60%)]	Loss: 0.000019, KL fake Loss: 0.012046
+Classification Train Epoch: 74 [44800/63553 (70%)]	Loss: 0.000004, KL fake Loss: 0.000004
+Classification Train Epoch: 74 [51200/63553 (80%)]	Loss: 0.008160, KL fake Loss: 0.000006
+Classification Train Epoch: 74 [57600/63553 (91%)]	Loss: 0.000048, KL fake Loss: 0.000007
+
+Test set: Average loss: 0.7249, Accuracy: 20604/22777 (90%)
+
+Classification Train Epoch: 75 [0/63553 (0%)]	Loss: 0.000007, KL fake Loss: 0.000069
+Classification Train Epoch: 75 [6400/63553 (10%)]	Loss: 0.000010, KL fake Loss: 0.000439
+Classification Train Epoch: 75 [12800/63553 (20%)]	Loss: 0.000081, KL fake Loss: 0.017300
+Classification Train Epoch: 75 [19200/63553 (30%)]	Loss: 0.000250, KL fake Loss: 0.000005
+Classification Train Epoch: 75 [25600/63553 (40%)]	Loss: 0.000066, KL fake Loss: 0.000004
+Classification Train Epoch: 75 [32000/63553 (50%)]	Loss: 0.000205, KL fake Loss: 0.000006
+Classification Train Epoch: 75 [38400/63553 (60%)]	Loss: 0.000009, KL fake Loss: 0.022684
+Classification Train Epoch: 75 [44800/63553 (70%)]	Loss: 0.000568, KL fake Loss: 0.000011
+Classification Train Epoch: 75 [51200/63553 (80%)]	Loss: 0.000015, KL fake Loss: 0.000124
+Classification Train Epoch: 75 [57600/63553 (91%)]	Loss: 0.000008, KL fake Loss: 0.000103
+
+Test set: Average loss: 1.1272, Accuracy: 19595/22777 (86%)
+
+Classification Train Epoch: 76 [0/63553 (0%)]	Loss: 0.000011, KL fake Loss: 0.001105
+Classification Train Epoch: 76 [6400/63553 (10%)]	Loss: 0.000024, KL fake Loss: 0.000002
+Classification Train Epoch: 76 [12800/63553 (20%)]	Loss: 0.000062, KL fake Loss: 0.000003
+Classification Train Epoch: 76 [19200/63553 (30%)]	Loss: 0.000043, KL fake Loss: 0.000012
+Classification Train Epoch: 76 [25600/63553 (40%)]	Loss: 0.000011, KL fake Loss: 0.000003
+Classification Train Epoch: 76 [32000/63553 (50%)]	Loss: 0.000290, KL fake Loss: 0.000024
+Classification Train Epoch: 76 [38400/63553 (60%)]	Loss: 0.000032, KL fake Loss: 0.000017
+Classification Train Epoch: 76 [44800/63553 (70%)]	Loss: 0.000005, KL fake Loss: 0.000001
+Classification Train Epoch: 76 [51200/63553 (80%)]	Loss: 0.000015, KL fake Loss: 0.000207
+Classification Train Epoch: 76 [57600/63553 (91%)]	Loss: 0.000010, KL fake Loss: 0.000001
+
+Test set: Average loss: 1.0084, Accuracy: 19846/22777 (87%)
+
+Classification Train Epoch: 77 [0/63553 (0%)]	Loss: 0.000013, KL fake Loss: 0.000007
+Classification Train Epoch: 77 [6400/63553 (10%)]	Loss: 0.000013, KL fake Loss: 0.000011
+Classification Train Epoch: 77 [12800/63553 (20%)]	Loss: 0.000096, KL fake Loss: 0.000001
+Classification Train Epoch: 77 [19200/63553 (30%)]	Loss: 0.000068, KL fake Loss: 0.000019
+Classification Train Epoch: 77 [25600/63553 (40%)]	Loss: 0.000021, KL fake Loss: 0.000001
+Classification Train Epoch: 77 [32000/63553 (50%)]	Loss: 0.000026, KL fake Loss: 0.000001
+Classification Train Epoch: 77 [38400/63553 (60%)]	Loss: 0.000024, KL fake Loss: 0.000001
+Classification Train Epoch: 77 [44800/63553 (70%)]	Loss: 0.000007, KL fake Loss: 0.000001
+Classification Train Epoch: 77 [51200/63553 (80%)]	Loss: 0.000019, KL fake Loss: 0.000001
+Classification Train Epoch: 77 [57600/63553 (91%)]	Loss: 0.000037, KL fake Loss: 0.000000
+
+Test set: Average loss: 0.8216, Accuracy: 20305/22777 (89%)
+
+ 78%|███████▊  | 78/100 [5:35:30<1:34:37, 258.05s/it] 79%|███████▉  | 79/100 [5:39:48<1:30:19, 258.05s/it] 80%|████████  | 80/100 [5:44:06<1:26:01, 258.08s/it] 81%|████████  | 81/100 [5:48:24<1:21:43, 258.07s/it] 82%|████████▏ | 82/100 [5:52:42<1:17:25, 258.06s/it] 83%|████████▎ | 83/100 [5:57:00<1:13:06, 258.06s/it] 84%|████████▍ | 84/100 [6:01:18<1:08:48, 258.05s/it] 85%|████████▌ | 85/100 [6:05:37<1:04:30, 258.06s/it]Classification Train Epoch: 78 [0/63553 (0%)]	Loss: 0.000005, KL fake Loss: 0.000310
+Classification Train Epoch: 78 [6400/63553 (10%)]	Loss: 0.000008, KL fake Loss: 0.000001
+Classification Train Epoch: 78 [12800/63553 (20%)]	Loss: 0.000009, KL fake Loss: 0.000001
+Classification Train Epoch: 78 [19200/63553 (30%)]	Loss: 0.000287, KL fake Loss: 0.000004
+Classification Train Epoch: 78 [25600/63553 (40%)]	Loss: 0.000002, KL fake Loss: 0.000151
+Classification Train Epoch: 78 [32000/63553 (50%)]	Loss: 0.000092, KL fake Loss: 0.000001
+Classification Train Epoch: 78 [38400/63553 (60%)]	Loss: 0.000030, KL fake Loss: 0.000000
+Classification Train Epoch: 78 [44800/63553 (70%)]	Loss: 0.000025, KL fake Loss: 0.000288
+Classification Train Epoch: 78 [51200/63553 (80%)]	Loss: 0.000020, KL fake Loss: 0.000000
+Classification Train Epoch: 78 [57600/63553 (91%)]	Loss: 0.000002, KL fake Loss: 0.000001
+
+Test set: Average loss: 1.0022, Accuracy: 19885/22777 (87%)
+
+Classification Train Epoch: 79 [0/63553 (0%)]	Loss: 0.000036, KL fake Loss: 0.000024
+Classification Train Epoch: 79 [6400/63553 (10%)]	Loss: 0.000007, KL fake Loss: 0.000000
+Classification Train Epoch: 79 [12800/63553 (20%)]	Loss: 0.000068, KL fake Loss: 0.000000
+Classification Train Epoch: 79 [19200/63553 (30%)]	Loss: 0.000030, KL fake Loss: 0.000010
+Classification Train Epoch: 79 [25600/63553 (40%)]	Loss: 0.000005, KL fake Loss: 0.008747
+Classification Train Epoch: 79 [32000/63553 (50%)]	Loss: 0.000002, KL fake Loss: 0.006364
+Classification Train Epoch: 79 [38400/63553 (60%)]	Loss: 0.000190, KL fake Loss: 0.000253
+Classification Train Epoch: 79 [44800/63553 (70%)]	Loss: 0.000007, KL fake Loss: 0.035164
+Classification Train Epoch: 79 [51200/63553 (80%)]	Loss: 0.001094, KL fake Loss: 0.000010
+Classification Train Epoch: 79 [57600/63553 (91%)]	Loss: 0.000037, KL fake Loss: 0.000004
+
+Test set: Average loss: 0.9980, Accuracy: 19467/22777 (85%)
+
+Classification Train Epoch: 80 [0/63553 (0%)]	Loss: 0.000029, KL fake Loss: 0.000006
+Classification Train Epoch: 80 [6400/63553 (10%)]	Loss: 0.000481, KL fake Loss: 0.000457
+Classification Train Epoch: 80 [12800/63553 (20%)]	Loss: 0.000037, KL fake Loss: 0.004394
+Classification Train Epoch: 80 [19200/63553 (30%)]	Loss: 0.000001, KL fake Loss: 0.000012
+Classification Train Epoch: 80 [25600/63553 (40%)]	Loss: 0.000034, KL fake Loss: 0.000001
+Classification Train Epoch: 80 [32000/63553 (50%)]	Loss: 0.000031, KL fake Loss: 0.000024
+Classification Train Epoch: 80 [38400/63553 (60%)]	Loss: 0.000031, KL fake Loss: 0.000183
+Classification Train Epoch: 80 [44800/63553 (70%)]	Loss: 0.000004, KL fake Loss: 0.000005
+Classification Train Epoch: 80 [51200/63553 (80%)]	Loss: 0.000010, KL fake Loss: 0.000293
+Classification Train Epoch: 80 [57600/63553 (91%)]	Loss: 0.000023, KL fake Loss: 0.000152
+
+Test set: Average loss: 1.4761, Accuracy: 18794/22777 (83%)
+
+Classification Train Epoch: 81 [0/63553 (0%)]	Loss: 0.000092, KL fake Loss: 0.000341
+Classification Train Epoch: 81 [6400/63553 (10%)]	Loss: 0.000002, KL fake Loss: 0.002247
+Classification Train Epoch: 81 [12800/63553 (20%)]	Loss: 0.000032, KL fake Loss: 0.000187
+Classification Train Epoch: 81 [19200/63553 (30%)]	Loss: 0.000188, KL fake Loss: 0.000366
+Classification Train Epoch: 81 [25600/63553 (40%)]	Loss: 0.000002, KL fake Loss: 0.000183
+Classification Train Epoch: 81 [32000/63553 (50%)]	Loss: 0.000065, KL fake Loss: 0.000002
+Classification Train Epoch: 81 [38400/63553 (60%)]	Loss: 0.000013, KL fake Loss: 0.000031
+Classification Train Epoch: 81 [44800/63553 (70%)]	Loss: 0.000022, KL fake Loss: 0.000003
+Classification Train Epoch: 81 [51200/63553 (80%)]	Loss: 0.000012, KL fake Loss: 0.000001
+Classification Train Epoch: 81 [57600/63553 (91%)]	Loss: 0.000025, KL fake Loss: 0.000006
+
+Test set: Average loss: 0.5632, Accuracy: 21124/22777 (93%)
+
+Classification Train Epoch: 82 [0/63553 (0%)]	Loss: 0.000012, KL fake Loss: 0.000315
+Classification Train Epoch: 82 [6400/63553 (10%)]	Loss: 0.000357, KL fake Loss: 0.000409
+Classification Train Epoch: 82 [12800/63553 (20%)]	Loss: 0.000036, KL fake Loss: 0.000010
+Classification Train Epoch: 82 [19200/63553 (30%)]	Loss: 0.000029, KL fake Loss: 0.000003
+Classification Train Epoch: 82 [25600/63553 (40%)]	Loss: 0.000044, KL fake Loss: 0.000001
+Classification Train Epoch: 82 [32000/63553 (50%)]	Loss: 0.001269, KL fake Loss: 0.000015
+Classification Train Epoch: 82 [38400/63553 (60%)]	Loss: 0.000062, KL fake Loss: 0.022417
+Classification Train Epoch: 82 [44800/63553 (70%)]	Loss: 0.000003, KL fake Loss: 0.000072
+Classification Train Epoch: 82 [51200/63553 (80%)]	Loss: 0.000001, KL fake Loss: 0.042286
+Classification Train Epoch: 82 [57600/63553 (91%)]	Loss: 0.000081, KL fake Loss: 0.000005
+
+Test set: Average loss: 0.5643, Accuracy: 21097/22777 (93%)
+
+Classification Train Epoch: 83 [0/63553 (0%)]	Loss: 0.000062, KL fake Loss: 0.000131
+Classification Train Epoch: 83 [6400/63553 (10%)]	Loss: 0.000060, KL fake Loss: 0.000002
+Classification Train Epoch: 83 [12800/63553 (20%)]	Loss: 0.000011, KL fake Loss: 0.000005
+Classification Train Epoch: 83 [19200/63553 (30%)]	Loss: 0.000006, KL fake Loss: 0.000002
+Classification Train Epoch: 83 [25600/63553 (40%)]	Loss: 0.000020, KL fake Loss: 0.000002
+Classification Train Epoch: 83 [32000/63553 (50%)]	Loss: 0.000005, KL fake Loss: 0.000001
+Classification Train Epoch: 83 [38400/63553 (60%)]	Loss: 0.000066, KL fake Loss: 0.000048
+Classification Train Epoch: 83 [44800/63553 (70%)]	Loss: 0.000036, KL fake Loss: 0.000004
+Classification Train Epoch: 83 [51200/63553 (80%)]	Loss: 0.000106, KL fake Loss: 0.000017
+Classification Train Epoch: 83 [57600/63553 (91%)]	Loss: 0.000075, KL fake Loss: 0.006444
+
+Test set: Average loss: 0.7272, Accuracy: 20296/22777 (89%)
+
+Classification Train Epoch: 84 [0/63553 (0%)]	Loss: 0.000154, KL fake Loss: 0.000204
+Classification Train Epoch: 84 [6400/63553 (10%)]	Loss: 0.000002, KL fake Loss: 0.000001
+Classification Train Epoch: 84 [12800/63553 (20%)]	Loss: 0.000159, KL fake Loss: 0.000001
+Classification Train Epoch: 84 [19200/63553 (30%)]	Loss: 0.000170, KL fake Loss: 0.000001
+Classification Train Epoch: 84 [25600/63553 (40%)]	Loss: 0.000010, KL fake Loss: 0.000036
+Classification Train Epoch: 84 [32000/63553 (50%)]	Loss: 0.000005, KL fake Loss: 0.000001
+Classification Train Epoch: 84 [38400/63553 (60%)]	Loss: 0.002310, KL fake Loss: 0.000001
+Classification Train Epoch: 84 [44800/63553 (70%)]	Loss: 0.000008, KL fake Loss: 0.000001
+Classification Train Epoch: 84 [51200/63553 (80%)]	Loss: 0.000148, KL fake Loss: 0.000006
+Classification Train Epoch: 84 [57600/63553 (91%)]	Loss: 0.000006, KL fake Loss: 0.000013
+
+Test set: Average loss: 0.7004, Accuracy: 20510/22777 (90%)
+
+Classification Train Epoch: 85 [0/63553 (0%)]	Loss: 0.000051, KL fake Loss: 0.000004
+Classification Train Epoch: 85 [6400/63553 (10%)]	Loss: 0.000076, KL fake Loss: 0.000005
+Classification Train Epoch: 85 [12800/63553 (20%)]	Loss: 0.000025, KL fake Loss: 0.000174
+Classification Train Epoch: 85 [19200/63553 (30%)]	Loss: 0.000025, KL fake Loss: 0.000001
+Classification Train Epoch: 85 [25600/63553 (40%)]	Loss: 0.000004, KL fake Loss: 0.000003
+Classification Train Epoch: 85 [32000/63553 (50%)]	Loss: 0.000106, KL fake Loss: 0.000002
+Classification Train Epoch: 85 [38400/63553 (60%)]	Loss: 0.000007, KL fake Loss: 0.000003
+Classification Train Epoch: 85 [44800/63553 (70%)]	Loss: 0.000006, KL fake Loss: 0.006370
+Classification Train Epoch: 85 [51200/63553 (80%)]	Loss: 0.000213, KL fake Loss: 0.000101
+Classification Train Epoch: 85 [57600/63553 (91%)]	Loss: 0.000025, KL fake Loss: 0.000364
+
+Test set: Average loss: 0.8272, Accuracy: 20421/22777 (90%)
+
+Classification Train Epoch: 86 [0/63553 (0%)]	Loss: 0.000014, KL fake Loss: 0.001314
+Classification Train Epoch: 86 [6400/63553 (10%)]	Loss: 0.000013, KL fake Loss: 0.000034
+Classification Train Epoch: 86 [12800/63553 (20%)]	Loss: 0.000009, KL fake Loss: 0.000609
+Classification Train Epoch: 86 [19200/63553 (30%)]	Loss: 0.000001, KL fake Loss: 0.000001
+Classification Train Epoch: 86 [25600/63553 (40%)]	Loss: 0.000001, KL fake Loss: 0.000002
+Classification Train Epoch: 86 [32000/63553 (50%)]	Loss: 0.000003, KL fake Loss: 0.000000
+ 86%|████████▌ | 86/100 [6:09:55<1:00:12, 258.05s/it] 87%|████████▋ | 87/100 [6:14:13<55:54, 258.05s/it]   88%|████████▊ | 88/100 [6:18:31<51:36, 258.06s/it] 89%|████████▉ | 89/100 [6:22:49<47:18, 258.06s/it] 90%|█████████ | 90/100 [6:27:07<43:00, 258.07s/it] 91%|█████████ | 91/100 [6:31:25<38:42, 258.07s/it] 92%|█████████▏| 92/100 [6:35:43<34:24, 258.06s/it] 93%|█████████▎| 93/100 [6:40:01<30:06, 258.06s/it] 94%|█████████▍| 94/100 [6:44:19<25:48, 258.05s/it]Classification Train Epoch: 86 [38400/63553 (60%)]	Loss: 0.000003, KL fake Loss: 0.000004
+Classification Train Epoch: 86 [44800/63553 (70%)]	Loss: 0.000015, KL fake Loss: 0.000001
+Classification Train Epoch: 86 [51200/63553 (80%)]	Loss: 0.000003, KL fake Loss: 0.000000
+Classification Train Epoch: 86 [57600/63553 (91%)]	Loss: 0.000007, KL fake Loss: 0.000969
+
+Test set: Average loss: 0.6900, Accuracy: 20619/22777 (91%)
+
+Classification Train Epoch: 87 [0/63553 (0%)]	Loss: 0.000020, KL fake Loss: 0.004053
+Classification Train Epoch: 87 [6400/63553 (10%)]	Loss: 0.002467, KL fake Loss: 0.000277
+Classification Train Epoch: 87 [12800/63553 (20%)]	Loss: 0.000001, KL fake Loss: 0.000001
+Classification Train Epoch: 87 [19200/63553 (30%)]	Loss: 0.000010, KL fake Loss: 0.000006
+Classification Train Epoch: 87 [25600/63553 (40%)]	Loss: 0.000008, KL fake Loss: 0.000001
+Classification Train Epoch: 87 [32000/63553 (50%)]	Loss: 0.000001, KL fake Loss: 0.000001
+Classification Train Epoch: 87 [38400/63553 (60%)]	Loss: 0.000001, KL fake Loss: 0.000003
+Classification Train Epoch: 87 [44800/63553 (70%)]	Loss: 0.000003, KL fake Loss: 0.000000
+Classification Train Epoch: 87 [51200/63553 (80%)]	Loss: 0.000020, KL fake Loss: 0.000006
+Classification Train Epoch: 87 [57600/63553 (91%)]	Loss: 0.000004, KL fake Loss: 0.000000
+
+Test set: Average loss: 0.6989, Accuracy: 20652/22777 (91%)
+
+Classification Train Epoch: 88 [0/63553 (0%)]	Loss: 0.000026, KL fake Loss: 0.000976
+Classification Train Epoch: 88 [6400/63553 (10%)]	Loss: 0.000057, KL fake Loss: 0.000001
+Classification Train Epoch: 88 [12800/63553 (20%)]	Loss: 0.000025, KL fake Loss: 0.000012
+Classification Train Epoch: 88 [19200/63553 (30%)]	Loss: 0.000007, KL fake Loss: 0.000010
+Classification Train Epoch: 88 [25600/63553 (40%)]	Loss: 0.000004, KL fake Loss: 0.000003
+Classification Train Epoch: 88 [32000/63553 (50%)]	Loss: 0.000004, KL fake Loss: 0.000001
+Classification Train Epoch: 88 [38400/63553 (60%)]	Loss: 0.000003, KL fake Loss: 0.000000
+Classification Train Epoch: 88 [44800/63553 (70%)]	Loss: 0.000016, KL fake Loss: 0.000002
+Classification Train Epoch: 88 [51200/63553 (80%)]	Loss: 0.000007, KL fake Loss: 0.000004
+Classification Train Epoch: 88 [57600/63553 (91%)]	Loss: 0.000016, KL fake Loss: 0.000008
+
+Test set: Average loss: 0.8109, Accuracy: 20289/22777 (89%)
+
+Classification Train Epoch: 89 [0/63553 (0%)]	Loss: 0.000179, KL fake Loss: 0.008242
+Classification Train Epoch: 89 [6400/63553 (10%)]	Loss: 0.000005, KL fake Loss: 0.000002
+Classification Train Epoch: 89 [12800/63553 (20%)]	Loss: 0.000001, KL fake Loss: 0.000000
+Classification Train Epoch: 89 [19200/63553 (30%)]	Loss: 0.000037, KL fake Loss: 0.000000
+Classification Train Epoch: 89 [25600/63553 (40%)]	Loss: 0.000005, KL fake Loss: 0.000001
+Classification Train Epoch: 89 [32000/63553 (50%)]	Loss: 0.000074, KL fake Loss: 0.000000
+Classification Train Epoch: 89 [38400/63553 (60%)]	Loss: 0.000004, KL fake Loss: 0.000000
+Classification Train Epoch: 89 [44800/63553 (70%)]	Loss: 0.000227, KL fake Loss: 0.000001
+Classification Train Epoch: 89 [51200/63553 (80%)]	Loss: 0.000007, KL fake Loss: 0.000000
+Classification Train Epoch: 89 [57600/63553 (91%)]	Loss: 0.000014, KL fake Loss: 0.000003
+
+Test set: Average loss: 1.1647, Accuracy: 19632/22777 (86%)
+
+Classification Train Epoch: 90 [0/63553 (0%)]	Loss: 0.000031, KL fake Loss: 0.004166
+Classification Train Epoch: 90 [6400/63553 (10%)]	Loss: 0.000021, KL fake Loss: 0.000000
+Classification Train Epoch: 90 [12800/63553 (20%)]	Loss: 0.000010, KL fake Loss: 0.000000
+Classification Train Epoch: 90 [19200/63553 (30%)]	Loss: 0.000096, KL fake Loss: 0.000000
+Classification Train Epoch: 90 [25600/63553 (40%)]	Loss: 0.000024, KL fake Loss: 0.000000
+Classification Train Epoch: 90 [32000/63553 (50%)]	Loss: 0.000013, KL fake Loss: 0.000000
+Classification Train Epoch: 90 [38400/63553 (60%)]	Loss: 0.014088, KL fake Loss: 0.000024
+Classification Train Epoch: 90 [44800/63553 (70%)]	Loss: 0.000007, KL fake Loss: 0.000000
+Classification Train Epoch: 90 [51200/63553 (80%)]	Loss: 0.000016, KL fake Loss: 0.000000
+Classification Train Epoch: 90 [57600/63553 (91%)]	Loss: 0.000004, KL fake Loss: 0.000006
+
+Test set: Average loss: 0.8396, Accuracy: 20210/22777 (89%)
+
+Classification Train Epoch: 91 [0/63553 (0%)]	Loss: 0.000016, KL fake Loss: 0.000000
+Classification Train Epoch: 91 [6400/63553 (10%)]	Loss: 0.000025, KL fake Loss: 0.000000
+Classification Train Epoch: 91 [12800/63553 (20%)]	Loss: 0.000001, KL fake Loss: -0.000000
+Classification Train Epoch: 91 [19200/63553 (30%)]	Loss: 0.000007, KL fake Loss: -0.000000
+Classification Train Epoch: 91 [25600/63553 (40%)]	Loss: 0.000003, KL fake Loss: 0.000000
+Classification Train Epoch: 91 [32000/63553 (50%)]	Loss: 0.000005, KL fake Loss: 0.000000
+Classification Train Epoch: 91 [38400/63553 (60%)]	Loss: 0.000018, KL fake Loss: 0.000000
+Classification Train Epoch: 91 [44800/63553 (70%)]	Loss: 0.000021, KL fake Loss: 0.000000
+Classification Train Epoch: 91 [51200/63553 (80%)]	Loss: 0.000153, KL fake Loss: 0.000000
+Classification Train Epoch: 91 [57600/63553 (91%)]	Loss: 0.000034, KL fake Loss: 0.000000
+
+Test set: Average loss: 0.8997, Accuracy: 20126/22777 (88%)
+
+Classification Train Epoch: 92 [0/63553 (0%)]	Loss: 0.000005, KL fake Loss: 0.005105
+Classification Train Epoch: 92 [6400/63553 (10%)]	Loss: 0.000012, KL fake Loss: 0.000000
+Classification Train Epoch: 92 [12800/63553 (20%)]	Loss: 0.000038, KL fake Loss: 0.000000
+Classification Train Epoch: 92 [19200/63553 (30%)]	Loss: 0.000041, KL fake Loss: 0.000001
+Classification Train Epoch: 92 [25600/63553 (40%)]	Loss: 0.000001, KL fake Loss: 0.000002
+Classification Train Epoch: 92 [32000/63553 (50%)]	Loss: 0.000008, KL fake Loss: -0.000000
+Classification Train Epoch: 92 [38400/63553 (60%)]	Loss: 0.000017, KL fake Loss: 0.000000
+Classification Train Epoch: 92 [44800/63553 (70%)]	Loss: 0.000007, KL fake Loss: 0.000000
+Classification Train Epoch: 92 [51200/63553 (80%)]	Loss: 0.000022, KL fake Loss: 0.000002
+Classification Train Epoch: 92 [57600/63553 (91%)]	Loss: 0.000030, KL fake Loss: 0.000000
+
+Test set: Average loss: 0.7673, Accuracy: 20314/22777 (89%)
+
+Classification Train Epoch: 93 [0/63553 (0%)]	Loss: 0.000068, KL fake Loss: 0.000000
+Classification Train Epoch: 93 [6400/63553 (10%)]	Loss: 0.000002, KL fake Loss: 0.000000
+Classification Train Epoch: 93 [12800/63553 (20%)]	Loss: 0.000005, KL fake Loss: 0.000000
+Classification Train Epoch: 93 [19200/63553 (30%)]	Loss: 0.000005, KL fake Loss: -0.000000
+Classification Train Epoch: 93 [25600/63553 (40%)]	Loss: 0.000011, KL fake Loss: 0.000004
+Classification Train Epoch: 93 [32000/63553 (50%)]	Loss: 0.000004, KL fake Loss: 0.000000
+Classification Train Epoch: 93 [38400/63553 (60%)]	Loss: 0.000004, KL fake Loss: 0.000092
+Classification Train Epoch: 93 [44800/63553 (70%)]	Loss: 0.000008, KL fake Loss: 0.000000
+Classification Train Epoch: 93 [51200/63553 (80%)]	Loss: 0.000031, KL fake Loss: 0.000006
+Classification Train Epoch: 93 [57600/63553 (91%)]	Loss: 0.000005, KL fake Loss: 0.000000
+
+Test set: Average loss: 0.8771, Accuracy: 20141/22777 (88%)
+
+Classification Train Epoch: 94 [0/63553 (0%)]	Loss: 0.000004, KL fake Loss: 0.000026
+Classification Train Epoch: 94 [6400/63553 (10%)]	Loss: 0.000029, KL fake Loss: 0.000000
+Classification Train Epoch: 94 [12800/63553 (20%)]	Loss: 0.000013, KL fake Loss: 0.000000
+Classification Train Epoch: 94 [19200/63553 (30%)]	Loss: 0.000000, KL fake Loss: 0.000019
+Classification Train Epoch: 94 [25600/63553 (40%)]	Loss: 0.000007, KL fake Loss: 0.000001
+Classification Train Epoch: 94 [32000/63553 (50%)]	Loss: 0.000002, KL fake Loss: 0.000000
+Classification Train Epoch: 94 [38400/63553 (60%)]	Loss: 0.000014, KL fake Loss: 0.000164
+Classification Train Epoch: 94 [44800/63553 (70%)]	Loss: 0.000102, KL fake Loss: -0.000000
+Classification Train Epoch: 94 [51200/63553 (80%)]	Loss: 0.000000, KL fake Loss: 0.000000
+Classification Train Epoch: 94 [57600/63553 (91%)]	Loss: 0.000018, KL fake Loss: 0.000143
+
+Test set: Average loss: 0.6871, Accuracy: 20646/22777 (91%)
+
+Classification Train Epoch: 95 [0/63553 (0%)]	Loss: 0.000003, KL fake Loss: 0.000020
+ 95%|█████████▌| 95/100 [6:48:37<21:30, 258.06s/it] 96%|█████████▌| 96/100 [6:52:55<17:12, 258.05s/it] 97%|█████████▋| 97/100 [6:57:13<12:54, 258.06s/it] 98%|█████████▊| 98/100 [7:01:31<08:36, 258.05s/it] 99%|█████████▉| 99/100 [7:05:49<04:18, 258.05s/it]100%|██████████| 100/100 [7:10:08<00:00, 258.09s/it]100%|██████████| 100/100 [7:10:08<00:00, 258.08s/it]
+Classification Train Epoch: 95 [6400/63553 (10%)]	Loss: 0.000005, KL fake Loss: 0.000000
+Classification Train Epoch: 95 [12800/63553 (20%)]	Loss: 0.000021, KL fake Loss: 0.000000
+Classification Train Epoch: 95 [19200/63553 (30%)]	Loss: 0.000010, KL fake Loss: 0.000000
+Classification Train Epoch: 95 [25600/63553 (40%)]	Loss: 0.000012, KL fake Loss: 0.000000
+Classification Train Epoch: 95 [32000/63553 (50%)]	Loss: 0.000002, KL fake Loss: -0.000000
+Classification Train Epoch: 95 [38400/63553 (60%)]	Loss: 0.000004, KL fake Loss: 0.000000
+Classification Train Epoch: 95 [44800/63553 (70%)]	Loss: 0.000025, KL fake Loss: 0.000000
+Classification Train Epoch: 95 [51200/63553 (80%)]	Loss: 0.000008, KL fake Loss: 0.002323
+Classification Train Epoch: 95 [57600/63553 (91%)]	Loss: 0.000008, KL fake Loss: 0.001701
+
+Test set: Average loss: 0.6961, Accuracy: 20607/22777 (90%)
+
+Classification Train Epoch: 96 [0/63553 (0%)]	Loss: 0.000019, KL fake Loss: 0.000004
+Classification Train Epoch: 96 [6400/63553 (10%)]	Loss: 0.000018, KL fake Loss: 0.000001
+Classification Train Epoch: 96 [12800/63553 (20%)]	Loss: 0.000002, KL fake Loss: 0.000013
+Classification Train Epoch: 96 [19200/63553 (30%)]	Loss: 0.000024, KL fake Loss: 0.000018
+Classification Train Epoch: 96 [25600/63553 (40%)]	Loss: 0.000001, KL fake Loss: 0.003300
+Classification Train Epoch: 96 [32000/63553 (50%)]	Loss: 0.004824, KL fake Loss: 0.007196
+Classification Train Epoch: 96 [38400/63553 (60%)]	Loss: 0.000015, KL fake Loss: 0.001929
+Classification Train Epoch: 96 [44800/63553 (70%)]	Loss: 0.000003, KL fake Loss: 0.000690
+Classification Train Epoch: 96 [51200/63553 (80%)]	Loss: 0.000147, KL fake Loss: 0.125744
+Classification Train Epoch: 96 [57600/63553 (91%)]	Loss: 0.000022, KL fake Loss: 0.000322
+
+Test set: Average loss: 0.6134, Accuracy: 20762/22777 (91%)
+
+Classification Train Epoch: 97 [0/63553 (0%)]	Loss: 0.000022, KL fake Loss: 0.000135
+Classification Train Epoch: 97 [6400/63553 (10%)]	Loss: 0.000003, KL fake Loss: 0.000000
+Classification Train Epoch: 97 [12800/63553 (20%)]	Loss: 0.000016, KL fake Loss: 0.000001
+Classification Train Epoch: 97 [19200/63553 (30%)]	Loss: 0.000004, KL fake Loss: 0.000000
+Classification Train Epoch: 97 [25600/63553 (40%)]	Loss: 0.000001, KL fake Loss: 0.000000
+Classification Train Epoch: 97 [32000/63553 (50%)]	Loss: 0.000003, KL fake Loss: 0.000004
+Classification Train Epoch: 97 [38400/63553 (60%)]	Loss: 0.000012, KL fake Loss: 0.000004
+Classification Train Epoch: 97 [44800/63553 (70%)]	Loss: 0.000005, KL fake Loss: 0.000004
+Classification Train Epoch: 97 [51200/63553 (80%)]	Loss: 0.000044, KL fake Loss: 0.000007
+Classification Train Epoch: 97 [57600/63553 (91%)]	Loss: 0.000461, KL fake Loss: 0.000022
+
+Test set: Average loss: 0.7943, Accuracy: 20216/22777 (89%)
+
+Classification Train Epoch: 98 [0/63553 (0%)]	Loss: 0.000035, KL fake Loss: 0.000007
+Classification Train Epoch: 98 [6400/63553 (10%)]	Loss: 0.000018, KL fake Loss: 0.000000
+Classification Train Epoch: 98 [12800/63553 (20%)]	Loss: 0.000055, KL fake Loss: 0.000001
+Classification Train Epoch: 98 [19200/63553 (30%)]	Loss: 0.000002, KL fake Loss: 0.000000
+Classification Train Epoch: 98 [25600/63553 (40%)]	Loss: 0.000002, KL fake Loss: 0.000000
+Classification Train Epoch: 98 [32000/63553 (50%)]	Loss: 0.000010, KL fake Loss: 0.000002
+Classification Train Epoch: 98 [38400/63553 (60%)]	Loss: 0.000003, KL fake Loss: 0.000002
+Classification Train Epoch: 98 [44800/63553 (70%)]	Loss: 0.000052, KL fake Loss: 0.000034
+Classification Train Epoch: 98 [51200/63553 (80%)]	Loss: 0.000006, KL fake Loss: 0.002734
+Classification Train Epoch: 98 [57600/63553 (91%)]	Loss: 0.000093, KL fake Loss: 0.000043
+
+Test set: Average loss: 0.6881, Accuracy: 20613/22777 (90%)
+
+Classification Train Epoch: 99 [0/63553 (0%)]	Loss: 0.000113, KL fake Loss: 0.000072
+Classification Train Epoch: 99 [6400/63553 (10%)]	Loss: 0.000164, KL fake Loss: 0.000003
+Classification Train Epoch: 99 [12800/63553 (20%)]	Loss: 0.000007, KL fake Loss: 0.000023
+Classification Train Epoch: 99 [19200/63553 (30%)]	Loss: 0.000025, KL fake Loss: 0.000009
+Classification Train Epoch: 99 [25600/63553 (40%)]	Loss: 0.000002, KL fake Loss: 0.000219
+Classification Train Epoch: 99 [32000/63553 (50%)]	Loss: 0.000024, KL fake Loss: 0.004250
+Classification Train Epoch: 99 [38400/63553 (60%)]	Loss: 0.000003, KL fake Loss: 0.002615
+Classification Train Epoch: 99 [44800/63553 (70%)]	Loss: 0.000007, KL fake Loss: 0.000001
+Classification Train Epoch: 99 [51200/63553 (80%)]	Loss: 0.000006, KL fake Loss: 0.000003
+Classification Train Epoch: 99 [57600/63553 (91%)]	Loss: 0.000002, KL fake Loss: 0.000000
+
+Test set: Average loss: 0.7000, Accuracy: 20653/22777 (91%)
+
+Classification Train Epoch: 100 [0/63553 (0%)]	Loss: 0.000005, KL fake Loss: 0.000000
+Classification Train Epoch: 100 [6400/63553 (10%)]	Loss: 0.000011, KL fake Loss: 0.000000
+Classification Train Epoch: 100 [12800/63553 (20%)]	Loss: 0.000005, KL fake Loss: 0.000000
+Classification Train Epoch: 100 [19200/63553 (30%)]	Loss: 0.000025, KL fake Loss: 0.000000
+Classification Train Epoch: 100 [25600/63553 (40%)]	Loss: 0.000008, KL fake Loss: 0.000000
+Classification Train Epoch: 100 [32000/63553 (50%)]	Loss: 0.000010, KL fake Loss: -0.000000
+Classification Train Epoch: 100 [38400/63553 (60%)]	Loss: 0.000006, KL fake Loss: 0.000000
+Classification Train Epoch: 100 [44800/63553 (70%)]	Loss: 0.000204, KL fake Loss: 0.000001
+Classification Train Epoch: 100 [51200/63553 (80%)]	Loss: 0.000015, KL fake Loss: 0.008688
+Classification Train Epoch: 100 [57600/63553 (91%)]	Loss: 0.000001, KL fake Loss: 0.000018
+
+Test set: Average loss: 0.8434, Accuracy: 20146/22777 (88%)
+
+Namespace(batch_size=128, no_cuda=False, seed=1, dataset='SVHN', dataroot='./data', imageSize=32, outf='./results/joint_confidence_loss/SV-0.01/', out_dataset='SVHN', num_classes=8, num_channels=3, pre_trained_net='results/joint_confidence_loss/SV-0.01/model_epoch_100.pth')
+Random Seed:  1
+Load model
+DenseNet3(
+  (conv1): Conv2d(3, 24, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+  (block1): DenseBlock(
+    (layer): Sequential(
+      (0): BottleneckBlock(
+        (bn1): BatchNorm2d(24, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(24, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (1): BottleneckBlock(
+        (bn1): BatchNorm2d(36, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(36, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BottleneckBlock(
+        (bn1): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(48, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BottleneckBlock(
+        (bn1): BatchNorm2d(60, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(60, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (4): BottleneckBlock(
+        (bn1): BatchNorm2d(72, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(72, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (5): BottleneckBlock(
+        (bn1): BatchNorm2d(84, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(84, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (6): BottleneckBlock(
+        (bn1): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(96, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (7): BottleneckBlock(
+        (bn1): BatchNorm2d(108, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(108, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (8): BottleneckBlock(
+        (bn1): BatchNorm2d(120, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(120, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (9): BottleneckBlock(
+        (bn1): BatchNorm2d(132, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(132, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (10): BottleneckBlock(
+        (bn1): BatchNorm2d(144, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(144, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (11): BottleneckBlock(
+        (bn1): BatchNorm2d(156, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(156, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (12): BottleneckBlock(
+        (bn1): BatchNorm2d(168, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(168, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (13): BottleneckBlock(
+        (bn1): BatchNorm2d(180, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(180, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (14): BottleneckBlock(
+        (bn1): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(192, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (15): BottleneckBlock(
+        (bn1): BatchNorm2d(204, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(204, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (trans1): TransitionBlock(
+    (bn1): BatchNorm2d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (relu): ReLU(inplace=True)
+    (conv1): Conv2d(216, 108, kernel_size=(1, 1), stride=(1, 1), bias=False)
+  )
+  (block2): DenseBlock(
+    (layer): Sequential(
+      (0): BottleneckBlock(
+        (bn1): BatchNorm2d(108, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(108, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (1): BottleneckBlock(
+        (bn1): BatchNorm2d(120, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(120, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BottleneckBlock(
+        (bn1): BatchNorm2d(132, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(132, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BottleneckBlock(
+        (bn1): BatchNorm2d(144, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(144, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (4): BottleneckBlock(
+        (bn1): BatchNorm2d(156, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(156, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (5): BottleneckBlock(
+        (bn1): BatchNorm2d(168, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(168, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (6): BottleneckBlock(
+        (bn1): BatchNorm2d(180, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(180, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (7): BottleneckBlock(
+        (bn1): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(192, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (8): BottleneckBlock(
+        (bn1): BatchNorm2d(204, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(204, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (9): BottleneckBlock(
+        (bn1): BatchNorm2d(216, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(216, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (10): BottleneckBlock(
+        (bn1): BatchNorm2d(228, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(228, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (11): BottleneckBlock(
+        (bn1): BatchNorm2d(240, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(240, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (12): BottleneckBlock(
+        (bn1): BatchNorm2d(252, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(252, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (13): BottleneckBlock(
+        (bn1): BatchNorm2d(264, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(264, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (14): BottleneckBlock(
+        (bn1): BatchNorm2d(276, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(276, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (15): BottleneckBlock(
+        (bn1): BatchNorm2d(288, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(288, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (trans2): TransitionBlock(
+    (bn1): BatchNorm2d(300, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (relu): ReLU(inplace=True)
+    (conv1): Conv2d(300, 150, kernel_size=(1, 1), stride=(1, 1), bias=False)
+  )
+  (block3): DenseBlock(
+    (layer): Sequential(
+      (0): BottleneckBlock(
+        (bn1): BatchNorm2d(150, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(150, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (1): BottleneckBlock(
+        (bn1): BatchNorm2d(162, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(162, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (2): BottleneckBlock(
+        (bn1): BatchNorm2d(174, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(174, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (3): BottleneckBlock(
+        (bn1): BatchNorm2d(186, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(186, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (4): BottleneckBlock(
+        (bn1): BatchNorm2d(198, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(198, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (5): BottleneckBlock(
+        (bn1): BatchNorm2d(210, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(210, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (6): BottleneckBlock(
+        (bn1): BatchNorm2d(222, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(222, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (7): BottleneckBlock(
+        (bn1): BatchNorm2d(234, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(234, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (8): BottleneckBlock(
+        (bn1): BatchNorm2d(246, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(246, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (9): BottleneckBlock(
+        (bn1): BatchNorm2d(258, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(258, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (10): BottleneckBlock(
+        (bn1): BatchNorm2d(270, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(270, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (11): BottleneckBlock(
+        (bn1): BatchNorm2d(282, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(282, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (12): BottleneckBlock(
+        (bn1): BatchNorm2d(294, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(294, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (13): BottleneckBlock(
+        (bn1): BatchNorm2d(306, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(306, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (14): BottleneckBlock(
+        (bn1): BatchNorm2d(318, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(318, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+      (15): BottleneckBlock(
+        (bn1): BatchNorm2d(330, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (relu): ReLU(inplace=True)
+        (conv1): Conv2d(330, 48, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (bn2): BatchNorm2d(48, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (conv2): Conv2d(48, 12, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+      )
+    )
+  )
+  (bn1): BatchNorm2d(342, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+  (relu): ReLU(inplace=True)
+  (fc): Linear(in_features=342, out_features=8, bias=True)
+  (softmax): Softmax(dim=1)
+)ic| len(dset): 73257
+ic| len(dset): 26032
+ic| len(dset): 73257
+ic| len(dset): 26032
+
+load target data:  SVHN
+Using downloaded and verified file: ./Datasets/SVHN/train_32x32.mat
+Using downloaded and verified file: ./Datasets/SVHN/test_32x32.mat
+load non target data:  SVHN
+Using downloaded and verified file: ./Datasets/SVHN/train_32x32.mat
+Using downloaded and verified file: ./Datasets/SVHN/test_32x32.mat
+generate log from in-distribution data
+
+ Final Accuracy: 20146/22777 (88.45%)
+
+generate log  from out-of-distribution data
+calculate metrics
+  Performance of Baseline detector
+TNR at TPR 95%:            14.704%
+TNR at TPR 99%:             2.990%
+AUROC:                     71.838%
+Detection acc:             70.049%
+AUPR In:                   73.326%
+AUPR Out:                  70.663%

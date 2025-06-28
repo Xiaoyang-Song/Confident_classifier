@@ -1,15 +1,16 @@
 #!/bin/bash
 
-#SBATCH --account=alkontar1
-#SBATCH --job-name=CC-FM3
+#SBATCH --account=jhjin1
+#SBATCH --job-name=cccs
 #SBATCH --mail-user=xysong@umich.edu
 #SBATCH --mail-type=BEGIN,END,FAIL
 #SBATCH --nodes=1
 #SBATCH --partition=gpu
-#SBATCH --gres=gpu:1
-#SBATCH --mem-per-gpu=12GB
-#SBATCH --time=12:00:00
-#SBATCH --output=/scratch/sunwbgt_root/sunwbgt98/xysong/jobs/CC-FM-0.1.log
+#SBATCH --gpus=1
+#SBATCH --mem-per-gpu=16GB
+#SBATCH --time=8:00:00
+#SBATCH --output=/scratch/sunwbgt_root/sunwbgt98/xysong/Confident_classifier/out/ccfm-0.1.log
+
 
 export save=./results/joint_confidence_loss/FM-0.1/
 mkdir -p $save
